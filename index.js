@@ -57,6 +57,40 @@ const SVGEllipse = React.createClass({
   }
 })
 
+const SVGArrow = React.createClass({
+  propTypes: {
+    x1: React.PropTypes.number.isRequired,
+    y1: React.PropTypes.number.isRequired,
+    x2: React.PropTypes.number.isRequired,
+    y2: React.PropTypes.number.isRequired
+  },
+  render: function () {
+    return <svg>
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="red" />
+        </marker>
+      </defs>
+      <line 
+      {...this.props}
+      stroke="black" />
+      </svg>
+  }
+})
+
+const SVGText = React.createClass({
+  propTypes: {
+    x: React.PropTypes.number.isRequired,
+    y: React.PropTypes.number.isRequired,
+    text: React.PropTypes.string.isRequired
+  },
+  render: function () {
+    return  <text x={this.props.x} y={this.props.y} fill="green">
+              {this.props.text}
+            </text>
+  }
+})
+
 var shapes = [
   {
     type: SVGLine,
@@ -83,6 +117,23 @@ var shapes = [
       cy: 150,
       rx: 50,
       ry: 100
+    }
+  },
+  {
+    type: SVGArrow,
+    attributes: {
+      x1: 0,
+      y1: 0,
+      x2: 200,
+      y2: 200
+    }
+  },
+  {
+    type: SVGText,
+    attributes: {
+      x: 50,
+      y: 50,
+      text: "Miaou"
     }
   }
 ]
