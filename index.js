@@ -6,11 +6,12 @@ const DiagramEditor = React.createClass({
     shapes: React.PropTypes.array.isRequired
   },
   render: function () {
-    const Type = this.props.shapes[0].type
-    const shape = <Type
-      {...this.props.shapes[0].attributes} />
+    var canvas = this.props.shapes.map((elem, i) => {
+      const Type = elem.type
+      return <Type {...elem.attributes} key={i}/>
+    })
 
-    return <svg height="500" width="500">{shape}</svg>
+    return <svg height="500" width="500">{canvas}</svg>
   }
 })
 
@@ -28,6 +29,34 @@ const SVGLine = React.createClass({
   }
 })
 
+const SVGRectangle = React.createClass({
+  propTypes: {
+    x: React.PropTypes.number.isRequired,
+    y: React.PropTypes.number.isRequired,
+    width: React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired
+  },
+  render: function () {
+    return <rect 
+      {...this.props}
+      stroke="red" fill="none"/>
+  }
+})
+
+const SVGEllipse = React.createClass({
+  propTypes: {
+    cx: React.PropTypes.number.isRequired,
+    cy: React.PropTypes.number.isRequired,
+    rx: React.PropTypes.number.isRequired,
+    ry: React.PropTypes.number.isRequired
+  },
+  render: function () {
+    return <ellipse 
+      {...this.props}
+      stroke="blue" fill="none"/>
+  }
+})
+
 var shapes = [
   {
     type: SVGLine,
@@ -36,6 +65,24 @@ var shapes = [
       y1: 0,
       x2: 200,
       y2: 200
+    }
+  },
+  {
+    type: SVGRectangle,
+    attributes: {
+      x: 50,
+      y: 50,
+      width: 100,
+      height: 100
+    }
+  },
+  {
+    type: SVGEllipse,
+    attributes: {
+      cx: 150,
+      cy: 150,
+      rx: 50,
+      ry: 100
     }
   }
 ]
