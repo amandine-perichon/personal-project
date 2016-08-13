@@ -16,19 +16,28 @@ const DiagramEditor = React.createClass({
   },
   render: function () {
     return <div className="diagram-editor">
-      <Toolbar selectedTool={this.state.selectedTool} tools={this.props.state.tools}/>
+      <Toolbar selectedTool={this.state.selectedTool} onToolChange={this.onToolChange} tools={this.props.state.tools}/>
       <Diagram selectedTool={this.state.selectedTool} shapes={this.props.state.shapes}/>
       </div>
+  },
+  onToolChange: function (evt) {
+    this.setState({
+      selectedTool: evt.target.name
+    })
   }
 })
 
 const Toolbar = React.createClass({
   propTypes: {
     selectedTool: React.PropTypes.string.isRequired,
+    onToolChange: React.PropTypes.func.isRequired,
     tools: React.PropTypes.array.isRequired 
   },
   render: function () {
-    return <p>{this.props.tools}</p>
+    const toolbar = this.props.tools.map((elem, i) => {
+      return <button name={elem} onClick={this.props.onToolChange} key={i}>An {elem}</button>
+    })
+    return <p>{toolbar}</p>
   }
 })
 
@@ -43,7 +52,7 @@ const Diagram = React.createClass({
       return <Type {...elem.attributes} key={i}/>
     })
 
-    return <svg height="500" width="500" onClick={this.useTool}>{canvas}</svg>
+    return <svg height="500" width="500" onMouseUp={this.useTool}>{canvas}</svg>
   },
   useTool: function (evt) {
 
