@@ -1,17 +1,54 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {createStore} from 'redux'
+
 
 const DiagramEditor = React.createClass({
+  propTypes: {
+    state: React.PropTypes.object.isRequired
+  },
+  render: function () {
+    return <div className="diagram-editor">
+      <Toolbar tools={this.props.state.tools}/>
+      <Diagram shapes={this.props.state.shapes}/>
+      </div>
+  }
+})
+
+const Toolbar = React.createClass({
+  propTypes: {
+    tools: React.PropTypes.array.isRequired 
+  },
+  render: function () {
+    return <p>{this.props.tools}</p>
+  }
+})
+
+const Diagram = React.createClass({
   propTypes: {
     shapes: React.PropTypes.array.isRequired
   },
   render: function () {
-    var canvas = this.props.shapes.map((elem, i) => {
-      const Type = elem.type
+    const canvas = this.props.shapes.map((elem, i) => {
+    const Type = elem.type
       return <Type {...elem.attributes} key={i}/>
     })
 
-    return <svg height="500" width="500">{canvas}</svg>
+    return <svg height="500" width="500" onClick={this.useTool}>{canvas}</svg>
+  },
+  useTool: function (evt) {
+    console.log('clicked, position: ', evt.nativeEvent.offsetX, evt.nativeEvent.offsetY)
+    store.dispatch({type: "ADD_SHAPE", 
+      shape: {
+        type: SVGLine,
+        attributes: {
+          x1: evt.nativeEvent.offsetX,
+          y1: evt.nativeEvent.offsetY,
+          x2: 200,
+          y2: 200
+        }
+      }
+    })
   }
 })
 
@@ -66,11 +103,7 @@ const SVGArrow = React.createClass({
   },
   render: function () {
     return <svg>
-      <defs>
-        <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
-          <path d="M0,0 L0,6 L9,3 z" fill="red" />
-        </marker>
-      </defs>
+      {/*Need an arrow head*/}
       <line 
       {...this.props}
       stroke="black" />
@@ -91,51 +124,54 @@ const SVGText = React.createClass({
   }
 })
 
-var shapes = [
-  {
-    type: SVGLine,
-    attributes: {
-      x1: 0,
-      y1: 0,
-      x2: 200,
-      y2: 200
+var init = 
+{
+  tools: ['rectangle', 'ellipse', 'line', 'arrow', 'text'],
+  shapes: [
+    {
+      type: SVGRectangle,
+      attributes: {
+        x: 50,
+        y: 50,
+        width: 100,
+        height: 100
+      }
+    },
+    {
+      type: SVGEllipse,
+      attributes: {
+        cx: 150,
+        cy: 150,
+        rx: 50,
+        ry: 100
+      }
+    },
+    {
+      type: SVGText,
+      attributes: {
+        x: 50,
+        y: 50,
+        text: "Miaou"
+      }
     }
-  },
-  {
-    type: SVGRectangle,
-    attributes: {
-      x: 50,
-      y: 50,
-      width: 100,
-      height: 100
-    }
-  },
-  {
-    type: SVGEllipse,
-    attributes: {
-      cx: 150,
-      cy: 150,
-      rx: 50,
-      ry: 100
-    }
-  },
-  {
-    type: SVGArrow,
-    attributes: {
-      x1: 0,
-      y1: 0,
-      x2: 200,
-      y2: 200
-    }
-  },
-  {
-    type: SVGText,
-    attributes: {
-      x: 50,
-      y: 50,
-      text: "Miaou"
-    }
-  }
-]
+  ]
+}
 
-ReactDOM.render(<DiagramEditor shapes={shapes}/>, document.getElementById('app'))
+// STORE
+const editorReducer = function (state = init, action) {
+  switch(action.type) {
+    case 'ADD_SHAPE':
+      return Object.assign({}, state, {shapes: [...state.shapes, action.shape]})
+    default:
+      return state
+  }
+}
+
+let store = createStore(editorReducer, window.devToolsExtension && window.devToolsExtension())
+refresh()
+
+store.subscribe(refresh)
+
+function refresh() {
+  ReactDOM.render(<DiagramEditor state={store.getState()}/>, document.getElementById('app'))
+}
