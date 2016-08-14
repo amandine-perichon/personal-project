@@ -11,7 +11,7 @@ export const SVGLine = React.createClass({
   render: function () {
     return <line 
       {...this.props}
-      stroke="black" />
+      stroke="black" strokeWidth="3"/>
   }
 })
 
@@ -25,7 +25,7 @@ export const SVGRectangle = React.createClass({
   render: function () {
     return <rect 
       {...this.props}
-      stroke="red" fill="none"/>
+      stroke="red" fill="none" strokeWidth="3"/>
   }
 })
 
@@ -39,7 +39,7 @@ export const SVGEllipse = React.createClass({
   render: function () {
     return <ellipse 
       {...this.props}
-      stroke="blue" fill="none"/>
+      stroke="blue" fill="none" strokeWidth="3"/>
   }
 })
 
@@ -55,7 +55,7 @@ export const SVGArrow = React.createClass({
       {/*Need an arrow head*/}
       <line 
       {...this.props}
-      stroke="black"/>
+      stroke="black" strokeWidth="3"/>
       </svg>
   }
 })
@@ -67,7 +67,7 @@ export const SVGText = React.createClass({
     text: React.PropTypes.string.isRequired
   },
   render: function () {
-    return  <text x={this.props.x} y={this.props.y} fill="green">
+    return  <text x={this.props.x} y={this.props.y} fill="green" strokeWidth="3">
               {this.props.text}
             </text>
   }

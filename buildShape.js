@@ -8,8 +8,8 @@ export function buildShape(shapeType, evt) {
         type: SVGRectangle,
         attributes: {
           x: evt.nativeEvent.offsetX,
-          y: evt.nativeEvent.offsetX,
-          width: 100,
+          y: evt.nativeEvent.offsetY,
+          width: 150,
           height: 100
         }
       }
@@ -19,9 +19,9 @@ export function buildShape(shapeType, evt) {
         type: SVGLine,
         attributes: {
           x1: evt.nativeEvent.offsetX,
-          y1: evt.nativeEvent.offsetY,
+          y1: 200,
           x2: 200,
-          y2: 200
+          y2: evt.nativeEvent.offsetY
         }
       }
 
@@ -30,9 +30,30 @@ export function buildShape(shapeType, evt) {
         type: SVGEllipse,
         attributes: {
           cx: evt.nativeEvent.offsetX,
-          cy: evt.nativeEvent.offsetX,
-          rx: 50,
-          ry: 100
+          cy: evt.nativeEvent.offsetY,
+          rx: 100,
+          ry: 50
+        }
+      }
+
+    case ("text"):
+      return {
+      type: SVGText,
+      attributes: {
+          x: evt.nativeEvent.offsetX,
+          y: evt.nativeEvent.offsetY,
+          text: "Miaou"
+        }
+      }
+
+    case ("arrow"):
+      return {
+        type: SVGArrow,
+        attributes: {
+          x1: evt.nativeEvent.offsetX,
+          y1: 200,
+          x2: 200,
+          y2: evt.nativeEvent.offsetY
         }
       }
 
