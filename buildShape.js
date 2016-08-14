@@ -4,6 +4,12 @@ export function buildShape(shapeType, action) {
   switch (shapeType) {
 
     case ("rectangle"):
+      if (action.initial.x > action.final.x) {
+        [action.initial.x, action.final.x] = [action.final.x, action.initial.x]
+      }
+      if (action.initial.y > action.final.y) {
+        [action.initial.y, action.final.y] = [action.final.y, action.initial.y]
+      }
       return {
         type: SVGRectangle,
         attributes: {
