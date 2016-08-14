@@ -1,4 +1,4 @@
-import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from './diagramEditor'
+import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from './shapes'
 
 export function buildShape(shapeType, action) {
   switch (shapeType) {
