@@ -1,0 +1,22 @@
+.diagram-editor {
+  border: 1px solid black;
+}
+
+.diagram-editor .toolbar {
+  margin: 5px;
+  border: 1px solid grey;
+}
+
+.diagram-editor .toolbar .tool {
+  background-color: lightgrey;
+}
+
+.diagram-editor .toolbar .tool.selected {
+  color: white;
+  background-color: blue;
+}
+
+.diagram-editor .diagram {
+  margin: 5px;
+  border: 1px solid grey;
+}

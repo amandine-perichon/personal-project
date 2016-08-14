@@ -1,6 +1,8 @@
 import React from 'react'
 import {buildShape} from './buildShape'
 
+// Remove inline style for width and height
+
 export const DiagramEditor = React.createClass({
   propTypes: {
     diagram: React.PropTypes.array.isRequired,
@@ -34,14 +36,14 @@ const Toolbar = React.createClass({
   render: function () {
     const toolbar = this.props.tools.map((elem, i) => {
       if (elem === this.props.selectedTool) {
-        return <button style={{color:"red"}} name={elem} onClick={this.props.onToolChange} key={i}>
+        return <button className="tool selected" name={elem} onClick={this.props.onToolChange} key={i}>
                   {elem}
               </button>
       } else {
-        return <button name={elem} onClick={this.props.onToolChange} key={i}>{elem}</button>
+        return <button className="tool" name={elem} onClick={this.props.onToolChange} key={i}>{elem}</button>
       }
     })
-    return <section style={{width:800}}>{toolbar}</section>
+    return <div className="toolbar">{toolbar}</div>
   }
 })
 
@@ -62,10 +64,12 @@ const Diagram = React.createClass({
       return <Type {...elem.attributes} key={i}/>
     })
 
-    return <svg height="600" width="800" onMouseDown={this.initializeAction}
-                onMouseUp={this.completeAction}>
-                  {canvas}
-          </svg>
+    return <div className="diagram">
+            <svg height="600" width="800" onMouseDown={this.initializeAction}
+                  onMouseUp={this.completeAction}>
+                    {canvas}
+            </svg>
+          </div>
   },
   initializeAction: function (evt) {
     const initial =  {
