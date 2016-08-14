@@ -1,16 +1,16 @@
 import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from './diagramEditor'
 
-export function buildShape(shapeType, evt) {
+export function buildShape(shapeType, action) {
   switch (shapeType) {
 
     case ("rectangle"):
       return {
         type: SVGRectangle,
         attributes: {
-          x: evt.nativeEvent.offsetX,
-          y: evt.nativeEvent.offsetY,
-          width: 150,
-          height: 100
+          x: action.initial.x,
+          y: action.initial.y,
+          width: Math.abs(action.final.x - action.initial.x),
+          height: Math.abs(action.final.y - action.initial.y)
         }
       }
 
@@ -18,10 +18,10 @@ export function buildShape(shapeType, evt) {
       return {
         type: SVGLine,
         attributes: {
-          x1: evt.nativeEvent.offsetX,
-          y1: 200,
-          x2: 200,
-          y2: evt.nativeEvent.offsetY
+          x1: action.initial.x,
+          y1: action.initial.y,
+          x2: action.final.x,
+          y2: action.final.y
         }
       }
 
@@ -29,10 +29,10 @@ export function buildShape(shapeType, evt) {
       return {
         type: SVGEllipse,
         attributes: {
-          cx: evt.nativeEvent.offsetX,
-          cy: evt.nativeEvent.offsetY,
-          rx: 100,
-          ry: 50
+          cx: action.initial.x,
+          cy: action.initial.y,
+          rx: Math.abs(action.final.x - action.initial.x),
+          ry: Math.abs(action.final.y - action.initial.y)
         }
       }
 
@@ -40,8 +40,8 @@ export function buildShape(shapeType, evt) {
       return {
       type: SVGText,
       attributes: {
-          x: evt.nativeEvent.offsetX,
-          y: evt.nativeEvent.offsetY,
+          x: action.final.x,
+          y: action.final.y,
           text: "Miaou"
         }
       }
@@ -50,10 +50,10 @@ export function buildShape(shapeType, evt) {
       return {
         type: SVGArrow,
         attributes: {
-          x1: evt.nativeEvent.offsetX,
-          y1: 200,
-          x2: 200,
-          y2: evt.nativeEvent.offsetY
+          x1: action.initial.x,
+          y1: action.initial.y,
+          x2: action.final.x,
+          y2: action.final.y
         }
       }
 

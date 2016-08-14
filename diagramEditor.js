@@ -33,7 +33,13 @@ const Toolbar = React.createClass({
   },
   render: function () {
     const toolbar = this.props.tools.map((elem, i) => {
-      return <button name={elem} onClick={this.props.onToolChange} key={i}>{elem}</button>
+      if (elem === this.props.selectedTool) {
+        return <button style={{color:"red"}} name={elem} onClick={this.props.onToolChange} key={i}>
+                  {elem}
+              </button>
+      } else {
+        return <button name={elem} onClick={this.props.onToolChange} key={i}>{elem}</button>
+      }
     })
     return <section style={{width:800}}>{toolbar}</section>
   }
@@ -45,18 +51,40 @@ const Diagram = React.createClass({
     shapes: React.PropTypes.array.isRequired,
     onChange: React.PropTypes.func.isRequired
   },
+  getInitialState: function () {
+    return {
+      action: null,
+    }
+  },
   render: function () {
     const canvas = this.props.shapes.map((elem, i) => {
     const Type = elem.type
       return <Type {...elem.attributes} key={i}/>
     })
 
-    return <svg height="600" width="800" onClick={this.useTool}>{canvas}</svg>
+    return <svg height="600" width="800" onMouseDown={this.initializeAction}
+                onMouseUp={this.completeAction}>
+                  {canvas}
+          </svg>
   },
-  useTool: function (evt) {
-    console.log('clicked, position: ', evt.nativeEvent.offsetX, evt.nativeEvent.offsetY, this.props.selectedTool)
-    const newDiagram = [...this.props.shapes, buildShape(this.props.selectedTool, evt)]
-    this.props.onChange(newDiagram)
+  initializeAction: function (evt) {
+    const initial =  {
+          x: evt.nativeEvent.offsetX,
+          y: evt.nativeEvent.offsetY
+        }
+    this.setState(Object.assign({}, this.state, {action: {initial: initial}}))
+  },
+  completeAction: function (evt) {
+    const final =  {
+          x: evt.nativeEvent.offsetX,
+          y: evt.nativeEvent.offsetY
+        }
+    const newAction = Object.assign({}, this.state.action, {final: final})
+    console.log(newAction)
+    this.setState(Object.assign({}, this.state, {action: newAction}), function () {
+      const newDiagram = [...this.props.shapes, buildShape(this.props.selectedTool, this.state.action)]
+      this.props.onChange(newDiagram)
+  })
   }
 })
 

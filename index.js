@@ -4,7 +4,6 @@ import {createStore} from 'redux'
 
 import {DiagramEditor} from './diagramEditor'
 
-// STORE
 const editorReducer = function (state = {diagram: []}, action) {
   switch(action.type) {
     case 'UPDATE_DIAGRAM':
