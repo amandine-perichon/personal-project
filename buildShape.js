@@ -1,22 +1,23 @@
 import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from './shapes'
 
 export function buildShape(shapeType, action) {
-  switch (shapeType) {
+  let {initial: {x: ix, y: iy}, final: {x: fx, y: fy}} = action
 
+  switch (shapeType) {
     case ("rectangle"):
-      if (action.initial.x > action.final.x) {
-        [action.initial.x, action.final.x] = [action.final.x, action.initial.x]
+      if (ix > fx) {
+        [ix, fx] = [fx, ix]
       }
-      if (action.initial.y > action.final.y) {
-        [action.initial.y, action.final.y] = [action.final.y, action.initial.y]
+      if (iy > fy) {
+        [iy, fy] = [fy, iy]
       }
       return {
         type: SVGRectangle,
         attributes: {
-          x: action.initial.x,
-          y: action.initial.y,
-          width: Math.abs(action.final.x - action.initial.x),
-          height: Math.abs(action.final.y - action.initial.y)
+          x: ix,
+          y: iy,
+          width: Math.abs(fx - ix),
+          height: Math.abs(fy - iy)
         }
       }
 
@@ -24,21 +25,29 @@ export function buildShape(shapeType, action) {
       return {
         type: SVGLine,
         attributes: {
-          x1: action.initial.x,
-          y1: action.initial.y,
-          x2: action.final.x,
-          y2: action.final.y
+          x1: ix,
+          y1: iy,
+          x2: fx,
+          y2: fy
         }
       }
 
     case ("ellipse"):
+      if (ix > fx) {
+        [ix, fx] = [fx, ix]
+      }
+      if (iy > fy) {
+        [iy, fy] = [fy, iy]
+      }
+      const rx = (fx - ix) /2
+      const ry = (fy - iy) /2
       return {
         type: SVGEllipse,
         attributes: {
-          cx: action.initial.x,
-          cy: action.initial.y,
-          rx: Math.abs(action.final.x - action.initial.x),
-          ry: Math.abs(action.final.y - action.initial.y)
+          cx: ix + rx,
+          cy: iy + ry,
+          rx: rx,
+          ry: ry
         }
       }
 
@@ -46,8 +55,8 @@ export function buildShape(shapeType, action) {
       return {
       type: SVGText,
       attributes: {
-          x: action.final.x,
-          y: action.final.y,
+          x: fx,
+          y: fy,
           text: "Miaou"
         }
       }
@@ -56,10 +65,10 @@ export function buildShape(shapeType, action) {
       return {
         type: SVGArrow,
         attributes: {
-          x1: action.initial.x,
-          y1: action.initial.y,
-          x2: action.final.x,
-          y2: action.final.y
+          x1: ix,
+          y1: iy,
+          x2: fx,
+          y2: fy
         }
       }
 
