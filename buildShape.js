@@ -1,4 +1,4 @@
-import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from './reactShapes'
+import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from './diagramEditor'
 
 export function buildShape(shapeType, evt) {
   switch (shapeType) {
