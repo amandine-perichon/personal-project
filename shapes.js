@@ -24,7 +24,7 @@ export const SVGRectangle = React.createClass({
   render: function () {
     return <rect
       {...this.props}
-      stroke="red" fill="none" strokeWidth="3"/>
+      stroke="black" fill="none" strokeWidth="3"/>
   }
 })
 
@@ -38,7 +38,7 @@ export const SVGEllipse = React.createClass({
   render: function () {
     return <ellipse
       {...this.props}
-      stroke="blue" fill="none" strokeWidth="3"/>
+      stroke="black" fill="none" strokeWidth="3"/>
   }
 })
 
