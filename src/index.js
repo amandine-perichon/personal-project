@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {createStore} from 'redux'
 
-import {DiagramEditor} from './diagramEditor'
+import DiagramEditor from './components/DiagramEditor'
 
 const editorReducer = function (state = {diagram: []}, action) {
   switch(action.type) {

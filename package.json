@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
-    "build": "webpack ./index.js app.js",
+    "build": "webpack ./src/index.js app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Amandine Perichon",
