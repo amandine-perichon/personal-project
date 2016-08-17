@@ -1,30 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {createStore} from 'redux'
+import {Router, Route, hashHistory} from 'react-router'
 
-import DiagramEditor from './components/DiagramEditor'
+import store from './store'
+import Header from './components/Header'
+import Home from './components/Home'
+import CreateDiagram from './components/CreateDiagram'
 
-const editorReducer = function (state = {diagram: []}, action) {
-  switch(action.type) {
-    case 'UPDATE_DIAGRAM':
-      return Object.assign({}, {diagram: action.diagram})
-    default:
-      return state
-  }
-}
-
-let store = createStore(editorReducer, window.devToolsExtension && window.devToolsExtension())
 refresh()
-
 store.subscribe(refresh)
 
-function changeDiagram (diagram) {
-  store.dispatch({type: "UPDATE_DIAGRAM", diagram: diagram})
-}
-
-
 function refresh() {
-  ReactDOM.render(<DiagramEditor diagram={store.getState().diagram}
-                    onChange={changeDiagram}/>,
-                    document.getElementById('app'))
+  ReactDOM.render(
+    <Router history={hashHistory}>
+      <Route component={Header}>
+        <Route path='/' component={Home} />
+        <Route path='/diagrams' component={CreateDiagram}/>
+        <Route path='/create' component={CreateDiagram}/>
+      </Route>
+    </Router>,
+    document.getElementById('app'))
 }

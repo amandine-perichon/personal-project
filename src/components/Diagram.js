@@ -12,9 +12,15 @@ export default React.createClass({
       action: null,
     }
   },
+  svgNode: null,
+  logSVG: function () {
+    if (this.svgNode) {
+      console.log(this.svgNode)
+    }
+  },
   render: function () {
     let temp = null
-    if (this.state.action) {
+    if (this.state.action && creatingShapeAction(this.props.selectedTool)) {
       const tempData = buildShape(this.props.selectedTool, this.state.action)
       const TempType = tempData.type
       temp = <TempType {...tempData.attributes} />
@@ -22,7 +28,8 @@ export default React.createClass({
 
     return (
       <div className="diagram">
-        <svg  height="600"
+        <svg  ref={(node) => this.svgNode = node}
+              height="600"
               width="800"
               onMouseDown={this.mouseDownAction}
               onMouseMove={this.mouseMoveAction}
@@ -36,6 +43,9 @@ export default React.createClass({
   mouseDownAction: function (evt) {
     evt.preventDefault()
     this.setState({action: {initial: coord(evt), final: coord(evt)}})
+    if (this.props.selectedTool === "text") {
+      console.log("Text should be handled")
+    }
   },
   mouseMoveAction: function (evt) {
     evt.preventDefault()
@@ -50,6 +60,7 @@ export default React.createClass({
       this.props.onChange(newDiagram)
     }
     this.setState({action: null})
+    this.logSVG()
   }
 })
 

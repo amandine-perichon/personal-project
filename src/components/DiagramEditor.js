@@ -16,6 +16,8 @@ export default React.createClass({
     }
   },
   render: function () {
+    // tools should contain text, move, resize
+    // tools could contain select, color picker, line style, undo, redo
     const tools = ['rectangle', 'ellipse', 'line', 'arrow', 'text']
     return <div className="diagram-editor" style={{width:800}}>
       <Toolbar selectedTool={this.state.selectedTool} onToolChange={this.onToolChange} tools={tools}/>
