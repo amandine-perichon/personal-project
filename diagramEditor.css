@@ -20,3 +20,7 @@
   margin: 5px;
   border: 1px solid grey;
 }
+
+.diagram-editor .diagram svg * {
+  pointer-events: none;
+}

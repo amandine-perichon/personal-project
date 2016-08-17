@@ -2,7 +2,7 @@ import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from './shapes'
 
 export function buildShape(shapeType, action) {
   let {initial: {x: ix, y: iy}, final: {x: fx, y: fy}} = action
-
+  // console.log(action, ix, iy, fx, fy, (fx - ix), (fy - iy))
   switch (shapeType) {
     case ("rectangle"):
       if (ix > fx) {

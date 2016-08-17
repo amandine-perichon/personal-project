@@ -84,7 +84,7 @@ const Diagram = React.createClass({
           x: evt.nativeEvent.offsetX,
           y: evt.nativeEvent.offsetY
         }
-    this.setState(Object.assign({}, this.state, {action: {initial: initial, final: initial}}))
+    this.setState({action: {initial: initial, final: initial}})
   },
   tempAction: function (evt) {
     evt.preventDefault()
@@ -94,20 +94,12 @@ const Diagram = React.createClass({
             y: evt.nativeEvent.offsetY
           }
       const newAction = Object.assign({}, this.state.action, {final: final})
-      this.setState(Object.assign({}, this.state, {action: newAction}))
+      this.setState({action: newAction})
     }
   },
   completeAction: function (evt) {
-    evt.preventDefault()
-    const final =  {
-          x: evt.nativeEvent.offsetX,
-          y: evt.nativeEvent.offsetY
-        }
-    const newAction = Object.assign({}, this.state.action, {final: final})
-    this.setState(Object.assign({}, this.state, {action: newAction}), function () {
-      const newDiagram = [...this.props.shapes, buildShape(this.props.selectedTool, this.state.action)]
-      this.props.onChange(newDiagram)
-      this.setState({action: null})
-    })
+    const newDiagram = [...this.props.shapes, buildShape(this.props.selectedTool, this.state.action)]
+    this.props.onChange(newDiagram)
+    this.setState({action: null})
   }
 })
