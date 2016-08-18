@@ -7,7 +7,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.get('/diagrams', function (req, res) {
-  res.send([])
+  res.send()
 })
 
 app.listen(PORT, function () {

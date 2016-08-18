@@ -1,5 +1,6 @@
 import React from 'react'
 import buildShape from '../../lib/buildShape'
+import createReactShape from '../../lib/createReactShape'
 
 export default React.createClass({
   propTypes: {
@@ -12,24 +13,16 @@ export default React.createClass({
       action: null,
     }
   },
-  svgNode: null,
-  logSVG: function () {
-    if (this.svgNode) {
-      console.log(this.svgNode)
-    }
-  },
   render: function () {
     let temp = null
     if (this.state.action && creatingShapeAction(this.props.selectedTool)) {
       const tempData = buildShape(this.props.selectedTool, this.state.action)
-      const TempType = tempData.type
-      temp = <TempType {...tempData.attributes} />
+      temp = createReactShape(tempData, 0)
     }
 
     return (
       <div className="diagram">
-        <svg  ref={(node) => this.svgNode = node}
-              height="600"
+        <svg  height="600"
               width="800"
               onMouseDown={this.mouseDownAction}
               onMouseMove={this.mouseMoveAction}
@@ -60,7 +53,6 @@ export default React.createClass({
       this.props.onChange(newDiagram)
     }
     this.setState({action: null})
-    this.logSVG()
   }
 })
 
@@ -70,8 +62,7 @@ function creatingShapeAction (selectedTool) {
 
 function createCanvas (shapes) {
   return shapes.map((elem, i) => {
-    const Type = elem.type
-    return <Type {...elem.attributes} key={i}/>
+    return createReactShape(elem, i)
   })
 }
 

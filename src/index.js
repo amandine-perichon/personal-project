@@ -6,6 +6,7 @@ import store from './store'
 import Header from './components/Header'
 import Home from './components/Home'
 import CreateDiagram from './components/CreateDiagram'
+import DiagramList from './components/DiagramList'
 
 refresh()
 store.subscribe(refresh)
@@ -15,7 +16,7 @@ function refresh() {
     <Router history={hashHistory}>
       <Route component={Header}>
         <Route path='/' component={Home} />
-        <Route path='/diagrams' component={CreateDiagram}/>
+        <Route path='/diagrams' component={DiagramList}/>
         <Route path='/create' component={CreateDiagram}/>
       </Route>
     </Router>,

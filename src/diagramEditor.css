@@ -24,3 +24,21 @@
 .diagram-editor .diagram svg * {
   pointer-events: none;
 }
+
+/* DIAGRAM STYLE */
+.diagram {
+  margin: 5px;
+  border: 1px solid grey;
+}
+
+.diagram svg {
+  border: 1px solid pink;
+}
+
+.diagram .title {
+  color: blue;
+}
+
+.diagram .author {
+  color: green;
+}
