@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient
 const url = 'mongodb://amandine:444719@ds161495.mlab.com:61495/diagrameditor'
-const Users = null
-const Diagrams = null
+let Users = null
+let Diagrams = null
 
 module.exports = {
   connect: connect,
@@ -33,5 +33,13 @@ function addDiagram (diagram) {
 }
 
 function getAllDiagrams () {
-  return Diagrams.find({})
+  return new Promise((resolve, reject) => {
+    Diagrams.find({}).toArray((err, docs) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(docs)
+      }
+    })
+  })
 }

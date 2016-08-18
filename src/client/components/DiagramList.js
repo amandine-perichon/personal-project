@@ -6,11 +6,16 @@ import createReactShape from '../../lib/createReactShape'
 export default React.createClass({
   getInitialState () {
     return {
-      diagrams: [{title: "Test diagram",author: "Amandine", shapes: [{type: "SVGRectangle", attributes: {x: 0, y: 0, width:200, height:100 }}]}, {title: "Test diagram", author: "Amandine", shapes: [{type: "SVGRectangle", attributes: {x: 0, y: 0, width:200, height:100 }}]}]
+      diagrams: []
     }
   },
   componentDidMount () {
-
+    request
+      .get('http://localhost:3000/diagrams')
+      .end((err, res) => {
+        console.log(res.body)
+        this.setState({diagrams: res.body})
+      })
   },
   createSVG (diagram, i) {
     const canvas = diagram.shapes.map((elem, i) => {
