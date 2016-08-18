@@ -1,5 +1,5 @@
 import React from 'react'
-import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from '../src/components/shapes'
+import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from '../client/components/shapes'
 
 export default function (shape, key) {
   switch (shape.type) {
