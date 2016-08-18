@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const database = require('./db')
 
 const PORT = process.env.PORT || 3000
 
@@ -10,6 +11,10 @@ app.get('/diagrams', function (req, res) {
   res.send()
 })
 
-app.listen(PORT, function () {
-  console.log('Listening on port', PORT)
-})
+database.connect()
+  .then(() => {
+    app.listen(PORT, function () {
+      console.log('Listening on port', PORT)
+    })
+  })
+  .catch(() => console.log('Could not connect to DB'))
