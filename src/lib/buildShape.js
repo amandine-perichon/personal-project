@@ -10,23 +10,23 @@ export default function (shapeType, action) {
         [iy, fy] = [fy, iy]
       }
       return {
-        type: "SVGRectangle",
-        attributes: {
-          x: ix,
-          y: iy,
-          width: Math.abs(fx - ix),
-          height: Math.abs(fy - iy)
+        "type": "SVGRectangle",
+        "attributes": {
+          "x": ix,
+          "y": iy,
+          "width": Math.abs(fx - ix),
+          "height": Math.abs(fy - iy)
         }
       }
 
     case ("line"):
       return {
-        type: "SVGLine",
-        attributes: {
-          x1: ix,
-          y1: iy,
-          x2: fx,
-          y2: fy
+        "type": "SVGLine",
+        "attributes": {
+          "x1": ix,
+          "y1": iy,
+          "x2": fx,
+          "y2": fy
         }
       }
 
@@ -40,33 +40,33 @@ export default function (shapeType, action) {
       const rx = (fx - ix) /2
       const ry = (fy - iy) /2
       return {
-        type: "SVGEllipse",
-        attributes: {
-          cx: ix + rx,
-          cy: iy + ry,
-          rx: rx,
-          ry: ry
+        "type": "SVGEllipse",
+        "attributes": {
+          "cx": ix + rx,
+          "cy": iy + ry,
+          "rx": rx,
+          "ry": ry
         }
       }
 
     case ("text"):
       return {
-      type: "SVGText",
-      attributes: {
-          x: fx,
-          y: fy,
-          text: "Miaou"
+      "type": "SVGText",
+      "attributes": {
+          "x": fx,
+          "y": fy,
+          "text": "Miaou"
         }
       }
 
     case ("arrow"):
       return {
-        type: "SVGArrow",
-        attributes: {
-          x1: ix,
-          y1: iy,
-          x2: fx,
-          y2: fy
+        "type": "SVGArrow",
+        "attributes": {
+          "x1": ix,
+          "y1": iy,
+          "x2": fx,
+          "y2": fy
         }
       }
 

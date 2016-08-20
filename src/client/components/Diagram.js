@@ -2,6 +2,8 @@ import React from 'react'
 import buildShape from '../../lib/buildShape'
 import createReactShape from '../../lib/createReactShape'
 
+// Diagram is an array of shapes
+
 export default React.createClass({
   propTypes: {
     selectedTool: React.PropTypes.string.isRequired,

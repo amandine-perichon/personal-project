@@ -15,8 +15,8 @@ function refresh() {
   ReactDOM.render(
     <Router history={hashHistory}>
       <Route component={Header}>
-        <Route path='/' component={Home} />
-        <Route path='/diagrams' component={DiagramList}/>
+        <Route path='/' component={DiagramList} />
+        <Route path='/mydiagrams' component={DiagramList}/>
         <Route path='/create' component={CreateDiagram}/>
       </Route>
     </Router>,

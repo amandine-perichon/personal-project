@@ -6,25 +6,24 @@ import createReactShape from '../../lib/createReactShape'
 export default React.createClass({
   getInitialState () {
     return {
-      diagrams: []
+      concepts: []
     }
   },
   componentDidMount () {
     request
-      .get('http://localhost:3000/diagrams')
+      .get('http://localhost:3000/concepts')
       .end((err, res) => {
-        console.log(res.body)
-        this.setState({diagrams: res.body})
+        this.setState({concepts: res.body})
       })
   },
-  createSVG (diagram, i) {
-    const canvas = diagram.shapes.map((elem, i) => {
+  createSVG (concept, i) {
+    const canvas = concept.diagram.map((elem, i) => {
       return createReactShape(elem, i)
     })
     return (
-      <div className="diagram" key={i}>
-        <h3 className="diagram-title">{diagram.title}</h3>
-        <p className="diagram-author">{diagram.author}</p>
+      <div className="concept" key={i}>
+        <h3 className="concept-title">{concept.title}</h3>
+        <p className="concept-description">{concept.description}</p>
         <svg  height="600"
               width="800">
           {canvas}
@@ -33,10 +32,10 @@ export default React.createClass({
     )
   },
   render () {
-    const diagrams = this.state.diagrams.map(this.createSVG)
+    const concepts = this.state.concepts.map(this.createSVG)
     return (
-    <div className='diagram-list'>
-      {diagrams}
+    <div className='concept-list'>
+      {concepts}
     </div>
     )
   }

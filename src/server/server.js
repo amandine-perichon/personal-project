@@ -10,7 +10,11 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/diagrams', routes.diagrams)
+app.get('/concepts', routes.allConcepts)
+
+app.post('/concept', routes.addConcept)
+
+app.put('/concept', routes.changeConcept)
 
 db.connect()
   .then(() => {

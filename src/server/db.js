@@ -1,13 +1,16 @@
-const MongoClient = require('mongodb').MongoClient
+const Mongo = require('mongodb')
+const MongoClient = Mongo.MongoClient
+const ObjectID = Mongo.ObjectID
 const url = 'mongodb://amandine:444719@ds161495.mlab.com:61495/diagrameditor'
 let Users = null
-let Diagrams = null
+let Concepts = null
 
 module.exports = {
   connect: connect,
   addUser: addUser,
-  addDiagram: addDiagram,
-  getAllDiagrams: getAllDiagrams
+  createConcept: createConcept,
+  updateConcept: updateConcept,
+  getAllConcepts: getAllConcepts
 }
 
 function connect () {
@@ -17,7 +20,7 @@ function connect () {
         reject(err)
       } else {
         Users = db.collection('users')
-        Diagrams = db.collection('diagrams')
+        Concepts = db.collection('concepts')
         resolve()
       }
     })
@@ -28,13 +31,19 @@ function addUser (username) {
   return Users.insertOne({username: username})
 }
 
-function addDiagram (diagram) {
-  return Diagrams.insertOne(diagram)
+function createConcept (concept) {
+  return Concepts.insertOne(concept)
 }
 
-function getAllDiagrams () {
+function updateConcept (concept) {
+  const {_id, title, description, diagram} = concept
+  const updateConcept = {"title": title, "description": description, "diagram": diagram}
+  return Concepts.updateOne({ _id: new ObjectID(concept._id) }, updateConcept)
+}
+
+function getAllConcepts () {
   return new Promise((resolve, reject) => {
-    Diagrams.find({}).toArray((err, docs) => {
+    Concepts.find({}).toArray((err, docs) => {
       if (err) {
         reject(err)
       } else {
