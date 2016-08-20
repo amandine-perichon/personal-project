@@ -12,7 +12,7 @@ export default React.createClass({
         <header>
           <h1>Code concepts</h1>
           <Link to='/'>Home</Link>
-          <Link to='/mydiagrams'>All diagrams</Link>
+          <Link to='/mydiagrams'>My diagrams</Link>
           <Link onClick={this.createNewDiagram} to='/create'>Create a new diagram</Link>
         </header>
         <section>{this.props.children}</section>

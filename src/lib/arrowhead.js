@@ -7,7 +7,6 @@ export default function (ix, iy, fx, fy) {
   const w = 10
   const U = B.subtract(A).normalize()
   const V = new Victor (-U.y, U.x)
-  //console.log(A,B,H,W,U,V)
   const firstHead = (new Victor(h*U.x, h*U.y)).add(new Victor(w*V.x, w*V.y))
   const secondHead = (new Victor(h*U.x, h*U.y)).subtract(new Victor(w*V.x, w*V.y))
   return [fx-Math.floor(firstHead.x), fy-Math.floor(firstHead.y),
