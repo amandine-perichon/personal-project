@@ -4,7 +4,6 @@ import {Router, Route, hashHistory} from 'react-router'
 
 import store from './store'
 import Header from './components/Header'
-import Home from './components/Home'
 import CreateDiagram from './components/CreateDiagram'
 import DiagramList from './components/DiagramList'
 

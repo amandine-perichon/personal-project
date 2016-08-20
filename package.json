@@ -21,6 +21,7 @@
     "react-router": "^2.6.1",
     "redux": "^3.5.2",
     "superagent": "^2.2.0",
+    "victor": "^1.1.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },

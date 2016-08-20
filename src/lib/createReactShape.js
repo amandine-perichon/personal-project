@@ -1,7 +1,7 @@
 import React from 'react'
 import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from '../client/components/shapes'
 
-export default function (shape, key) {
+export default function (shape, key = 0) {
   switch (shape.type) {
     case ("SVGRectangle"):
       return <SVGRectangle {...shape.attributes} key={key} />
@@ -14,9 +14,6 @@ export default function (shape, key) {
 
     case ("SVGText"):
       return <SVGText {...shape.attributes} key={key} />
-
-    case ("SVGArrow"):
-      return <SVGArrow {...shape.attributes} key={key} />
 
     default:
       return {}

@@ -2,8 +2,6 @@ import React from 'react'
 import buildShape from '../../lib/buildShape'
 import createReactShape from '../../lib/createReactShape'
 
-// Diagram is an array of shapes
-
 export default React.createClass({
   propTypes: {
     selectedTool: React.PropTypes.string.isRequired,
@@ -18,8 +16,8 @@ export default React.createClass({
   render: function () {
     let temp = null
     if (this.state.action && creatingShapeAction(this.props.selectedTool)) {
-      const tempData = buildShape(this.props.selectedTool, this.state.action)
-      temp = createReactShape(tempData, 0)
+      const tempDataArr = buildShape(this.props.selectedTool, this.state.action)
+      temp = tempDataArr.map(createReactShape)
     }
 
     return (
@@ -51,7 +49,7 @@ export default React.createClass({
   },
   mouseUpAction: function (evt) {
     if (creatingShapeAction(this.props.selectedTool)) {
-      const newDiagram = [...this.props.shapes, buildShape(this.props.selectedTool, this.state.action)]
+      const newDiagram = [...this.props.shapes, ...buildShape(this.props.selectedTool, this.state.action)]
       this.props.onChange(newDiagram)
     }
     this.setState({action: null})

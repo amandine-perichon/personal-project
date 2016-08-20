@@ -26,19 +26,19 @@
 }
 
 /* DIAGRAM STYLE */
-.diagram {
+.concept {
   margin: 5px;
   border: 1px solid grey;
 }
 
-.diagram svg {
+.concept svg {
   border: 1px solid pink;
 }
 
-.diagram .title {
+.concept-title {
   color: blue;
 }
 
-.diagram .author {
+.concept-description {
   color: green;
 }
