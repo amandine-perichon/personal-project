@@ -33,7 +33,6 @@ function changeConcept (req, res) {
     var concept = req.body
     db.updateConcept(concept)
     .then((result) => {
-      console.log(result)
       res.sendStatus(200)
     })
     .catch((err) => {

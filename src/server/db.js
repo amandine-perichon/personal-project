@@ -7,7 +7,8 @@ let Concepts = null
 
 module.exports = {
   connect: connect,
-  addUser: addUser,
+  findByUsername: findByUsername,
+  createUser: createUser,
   createConcept: createConcept,
   updateConcept: updateConcept,
   getAllConcepts: getAllConcepts
@@ -27,8 +28,12 @@ function connect () {
   })
 }
 
-function addUser (username) {
-  return Users.insertOne({username: username})
+function findByUsername (username) {
+  return Users.findOne({username: username})
+}
+
+function createUser (username, password) {
+  return Users.insertOne({username: username, password: password})
 }
 
 function createConcept (concept) {
