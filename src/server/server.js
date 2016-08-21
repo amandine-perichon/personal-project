@@ -42,14 +42,23 @@ app.post('/register', passport.authenticate('signup', {
 app.get('/register/error', function(req, res) {
   res.send(401)
 })
+
 app.get('/register/success', function(req, res) {
   res.send(200, {user: req.user})
 })
 
 app.post('/login', passport.authenticate('login', {
-  successRedirect: '/#/mydiagrams',
-  failureRedirect: '/'
+  successRedirect: '/login/success',
+  failureRedirect: '/login/error'
 }))
+
+app.get('/login/error', function(req, res) {
+  res.send(401)
+})
+
+app.get('/login/success', function(req, res) {
+  res.send(200, {user: req.user})
+})
 
 app.get('/logout', function(req, res) {
   req.logout()
