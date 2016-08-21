@@ -51,6 +51,7 @@ export default React.createClass({
           <header>
             <div className="row">
               <h1>Code concepts</h1>
+              <h3 className="username">{this.props.logged.username}</h3>
               <button type="button" name="logout" onClick={this.logout}>LOGOUT</button>
             </div>
             <div className="row">

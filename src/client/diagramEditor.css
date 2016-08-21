@@ -1,5 +1,9 @@
 /* HEADER STYLE */
 
+header {
+  border-bottom: 3px solid blue;
+}
+
 header div.row,
 header form,
 header h1,
@@ -9,8 +13,6 @@ header form label {
   flex-direction: row;
   justify-content: space-between;
 }
-
-
 
 /* DIAGRAM EDITOR STYLE */
 

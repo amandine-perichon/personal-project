@@ -1,20 +1,10 @@
 import React from 'react'
 import request from 'superagent'
-
 import createReactShape from '../../lib/createReactShape'
 
 export default React.createClass({
-  getInitialState () {
-    return {
-      concepts: []
-    }
-  },
-  componentDidMount () {
-    request
-      .get('http://localhost:3000/concepts')
-      .end((err, res) => {
-        this.setState({concepts: res.body})
-      })
+  props: {
+    concepts: React.PropTypes.array.isRequired
   },
   createSVG (concept, i) {
     const canvas = concept.diagram.map((elem, i) => {
@@ -23,7 +13,7 @@ export default React.createClass({
     return (
       <div className="concept" key={i}>
         <h3 className="concept-title">{concept.title}</h3>
-        <p className="concept-description">{concept.description}</p>
+        <p className="concept-description">Description: {concept.description}</p>
         <svg  height="600"
               width="800">
           {canvas}
@@ -32,7 +22,7 @@ export default React.createClass({
     )
   },
   render () {
-    const concepts = this.state.concepts.map(this.createSVG)
+    const concepts = this.props.concepts.map(this.createSVG)
     return (
     <div className='concept-list'>
       {concepts}

@@ -11,20 +11,12 @@ export default React.createClass({
   },
   componentDidMount () {
     request
-      .get('http://localhost:3000/concepts')
+      .get('http://localhost:3000/myconcepts')
       .end((err, res) => {
         this.setState({concepts: res.body})
       })
   },
   render () {
-    return (
-      <div>
-        <form>
-          <label htmlFor="keyword" />Keyword search 
-          <input type="text" name="keyword" />
-        </form>
-        <DiagramView concepts={this.state.concepts} />
-      </div>
-    )
+    return <DiagramView concepts={this.state.concepts} />
   }
 })

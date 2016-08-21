@@ -59,6 +59,8 @@ app.get('/logout', function(req, res) {
 
 app.get('/concepts', routes.allConcepts)
 
+app.get('/myconcepts', routes.myConcepts)
+
 app.post('/concept', routes.addConcept)
 
 app.put('/concept', routes.changeConcept)
