@@ -7,6 +7,11 @@ module.exports = {
 }
 
 function allConcepts (req, res) {
+  console.log(req.session)
+  if (req.session.passport) {
+    var id = req.session.passport.user
+    console.log(id)
+  }
   db.getAllConcepts()
     .then((concepts) => {
       res.send(concepts)

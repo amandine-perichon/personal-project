@@ -1,3 +1,19 @@
+/* HEADER STYLE */
+
+header div.row,
+header form,
+header h1,
+header form input,
+header form label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+
+/* DIAGRAM EDITOR STYLE */
+
 .diagram-editor {
   border: 1px solid black;
 }

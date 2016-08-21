@@ -1,7 +1,8 @@
 import {createStore, applyMiddleware, compose} from 'redux'
 import request from 'superagent'
 
-const editorReducer = function (state = {"search": [], "mydiagrams": [],
+const editorReducer = function (state = {"logged": {status: false, username: ""},
+                                "search": [], "mydiagrams": [],
                                 "concept": {"_id": "", "title": "", "description": "", "diagram": []}},
                                 action) {
     switch(action.type) {
@@ -16,6 +17,11 @@ const editorReducer = function (state = {"search": [], "mydiagrams": [],
         return Object.assign({}, state, {"concept": descriptionUpdate})
       case 'CREATE_CONCEPT_SUCCEEDED':
         return Object.assign({}, state, {"concept": action.concept})
+      case 'LOGIN':
+        const loggedUpdate = Object.assign({}, {status: true, username: action.username})
+        return Object.assign({}, state, {"logged": loggedUpdate})
+      case 'LOGOUT':
+        return Object.assign({}, state, {"logged": {status: false, username: "", _id: ""}})
     default:
       return state
   }

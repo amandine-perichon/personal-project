@@ -34,30 +34,21 @@ passport.use('signup', new LocalStrategy({
     passReqToCallback : true
   }, configureAuth.registerStrategy))
 
-app.post('/register', passport.authenticate('signup', {
-  successRedirect: '/register/success',
-  failureRedirect: '/register/error'
-}))
-
-app.get('/register/error', function(req, res) {
-  res.send(401)
+app.post('/register', passport.authenticate('signup'), function (req, res) {
+  if (req.user) {
+    res.json({username: req.user.username})
+  } else {
+    res.sendStatus(401)
+  }
 })
 
-app.get('/register/success', function(req, res) {
-  res.send(200, {user: req.user})
-})
-
-app.post('/login', passport.authenticate('login', {
-  successRedirect: '/login/success',
-  failureRedirect: '/login/error'
-}))
-
-app.get('/login/error', function(req, res) {
-  res.send(401)
-})
-
-app.get('/login/success', function(req, res) {
-  res.send(200, {user: req.user})
+app.post('/login', passport.authenticate('login'), function (req, res) {
+  if (req.user) {
+    const {_id, username} = req.user
+    res.json({username: req.user.username})
+  } else {
+    res.sendStatus(401)
+  }
 })
 
 app.get('/logout', function(req, res) {
