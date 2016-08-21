@@ -20,6 +20,9 @@ const editorReducer = function (state = {"logged": {status: false, username: ""}
       case 'LOGIN':
         const loggedUpdate = Object.assign({}, {status: true, username: action.username})
         return Object.assign({}, state, {"logged": loggedUpdate})
+      case 'REGISTER':
+          const registerUpdate = Object.assign({}, {status: true, username: action.username})
+          return Object.assign({}, state, {"logged": registerUpdate})
       case 'LOGOUT':
         return Object.assign({}, state, {"logged": {status: false, username: "", _id: ""}})
     default:
@@ -59,6 +62,22 @@ const updateInDB = store => next => action => {
   return next(action)
 }
 
-let store = createStore(editorReducer, compose(applyMiddleware(saveToDB, updateInDB), window.devToolsExtension && window.devToolsExtension()))
+const logOut = store => next => action => {
+  if (action.type === "LOGOUT") {
+    request
+      .get('http://localhost:3000/logout')
+      .end((err, res) => {
+        if (err) {
+          console.log(err)
+        } else {
+          store.dispatch({ type: "UPDATE_CONCEPT_SUCCEEDED"})
+        }
+      })
+  }
+  return next(action)
+}
+
+let store = createStore(editorReducer, compose(applyMiddleware(saveToDB, updateInDB, logOut),
+            window.devToolsExtension && window.devToolsExtension()))
 
 export default store

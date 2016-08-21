@@ -44,7 +44,7 @@ app.post('/register', passport.authenticate('signup'), function (req, res) {
 
 app.post('/login', passport.authenticate('login'), function (req, res) {
   if (req.user) {
-    const {_id, username} = req.user
+    console.log('login')
     res.json({username: req.user.username})
   } else {
     res.sendStatus(401)
@@ -52,8 +52,9 @@ app.post('/login', passport.authenticate('login'), function (req, res) {
 })
 
 app.get('/logout', function(req, res) {
+  console.log('logout')
   req.logout()
-  res.redirect('/')
+  res.sendStatus(200)
 })
 
 app.get('/concepts', routes.allConcepts)

@@ -24,6 +24,9 @@ export default React.createClass({
         }
       })
   },
+  logout () {
+    store.dispatch({type: "LOGOUT"})
+  },
   render () {
     if (!this.props.logged.status) {
       return (
@@ -48,7 +51,7 @@ export default React.createClass({
           <header>
             <div className="row">
               <h1>Code concepts</h1>
-              <button type="button" name="logout">LOGOUT</button>
+              <button type="button" name="logout" onClick={this.logout}>LOGOUT</button>
             </div>
             <div className="row">
               <Link to='/'>Search</Link>

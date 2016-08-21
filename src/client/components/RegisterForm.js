@@ -1,5 +1,6 @@
 import React from 'react'
 import request from 'superagent'
+import store from '../store'
 
 export default React.createClass({
   register (evt) {
@@ -9,9 +10,10 @@ export default React.createClass({
       .send({username: evt.target.username.value, password:evt.target.password.value})
       .end((err, res) => {
         if (err) {
+          console.log("PROBLEM WITH REGISTER")
           console.log(err)
         } else {
-          console.log(res.status, res)
+          store.dispatch({type: "REGISTER", username: res.body.username})
         }
       })
   },
