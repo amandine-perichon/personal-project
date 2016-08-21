@@ -46,8 +46,8 @@ function createConcept (concept) {
 }
 
 function updateConcept (concept) {
-  const {_id, title, description, diagram} = concept
-  const updateConcept = {"title": title, "description": description, "diagram": diagram}
+  const {_id, title, description, diagram, user_id} = concept
+  const updateConcept = {"title": title, "description": description, "diagram": diagram, "user_id": user_id}
   return Concepts.updateOne({ _id: new ObjectID(concept._id) }, updateConcept)
 }
 

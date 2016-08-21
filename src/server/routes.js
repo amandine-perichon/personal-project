@@ -44,8 +44,8 @@ function myConcepts (req, res) {
 }
 
 function addConcept (req, res) {
-    var concept = req.body
-    // Add user id based on session information
+    var concept = Object.assign({}, req.body, {user_id: req.user._id})
+    console.log(concept)
     db.createConcept(concept)
     .then((result) => {
       res.send(result.ops[0])
@@ -57,7 +57,7 @@ function addConcept (req, res) {
 }
 
 function changeConcept (req, res) {
-    var concept = req.body
+    var concept = Object.assign({}, req.body, {user_id: req.user._id})
     db.updateConcept(concept)
     .then((result) => {
       res.sendStatus(200)
