@@ -9,6 +9,7 @@ module.exports = {
 
 function allConcepts (req, res) {
   console.log(req.session)
+  console.log(req.isAuthenticated())
   if (req.session.passport) {
     var id = req.session.passport.user
     console.log(id)
@@ -24,7 +25,9 @@ function allConcepts (req, res) {
 }
 
 function myConcepts (req, res) {
-  console.log(req.session)
+  console.log('user', req.user)
+  console.log('session', req.session)
+  console.log(req.isAuthenticated())
   if (req.session.passport) {
     var id = req.session.passport.user
     console.log(id)

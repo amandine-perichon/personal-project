@@ -11,7 +11,7 @@ export default React.createClass({
   },
   componentDidMount () {
     request
-      .get('http://localhost:3000/myconcepts')
+      .get('/myconcepts')
       .end((err, res) => {
         this.setState({concepts: res.body})
       })

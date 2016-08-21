@@ -8,6 +8,7 @@ let Concepts = null
 module.exports = {
   connect: connect,
   findByUsername: findByUsername,
+  findById: findById,
   createUser: createUser,
   createConcept: createConcept,
   updateConcept: updateConcept,
@@ -30,6 +31,10 @@ function connect () {
 
 function findByUsername (username) {
   return Users.findOne({username: username})
+}
+
+function findById (id) {
+  return Users.findOne({ _id: new ObjectID(id) })
 }
 
 function createUser (username, password) {

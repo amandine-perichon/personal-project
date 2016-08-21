@@ -13,7 +13,7 @@ export default React.createClass({
   login (evt) {
     evt.preventDefault()
     request
-      .post('http://localhost:3000/login')
+      .post('/login')
       .send({username: evt.target.username.value, password:evt.target.password.value})
       .end((err, res) => {
         if (err) {

@@ -6,7 +6,7 @@ export default React.createClass({
   register (evt) {
     evt.preventDefault()
     request
-      .post('http://localhost:3000/register')
+      .post('/register')
       .send({username: evt.target.username.value, password:evt.target.password.value})
       .end((err, res) => {
         if (err) {

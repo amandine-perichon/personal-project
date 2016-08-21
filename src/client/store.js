@@ -33,7 +33,7 @@ const editorReducer = function (state = {"logged": {status: false, username: ""}
 const saveToDB = store => next => action => {
   if (action.type === "CREATE_CONCEPT_REQUESTED") {
     request
-      .post('http://localhost:3000/concept')
+      .post('/concept')
       .send({"title": "", "description": "", "diagram": []})
       .end((err, res) => {
         if (err) {
@@ -49,7 +49,7 @@ const saveToDB = store => next => action => {
 const updateInDB = store => next => action => {
   if (action.type === "UPDATE_CONCEPT_REQUEST") {
     request
-      .put('http://localhost:3000/concept')
+      .put('/concept')
       .send(store.getState().concept)
       .end((err, res) => {
         if (err) {
@@ -65,7 +65,7 @@ const updateInDB = store => next => action => {
 const logOut = store => next => action => {
   if (action.type === "LOGOUT") {
     request
-      .get('http://localhost:3000/logout')
+      .get('/logout')
       .end((err, res) => {
         if (err) {
           console.log(err)
