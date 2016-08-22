@@ -12,7 +12,8 @@ module.exports = {
   createUser: createUser,
   createConcept: createConcept,
   updateConcept: updateConcept,
-  getAllConcepts: getAllConcepts
+  getAllConcepts: getAllConcepts,
+  getMyConcepts: getMyConcepts
 }
 
 function connect () {
@@ -54,6 +55,18 @@ function updateConcept (concept) {
 function getAllConcepts () {
   return new Promise((resolve, reject) => {
     Concepts.find({}).toArray((err, docs) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(docs)
+      }
+    })
+  })
+}
+
+function getMyConcepts (id) {
+  return new Promise((resolve, reject) => {
+    Concepts.find({user_id: new ObjectID(id)}).toArray((err, docs) => {
       if (err) {
         reject(err)
       } else {

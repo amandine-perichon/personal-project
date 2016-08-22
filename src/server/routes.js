@@ -8,12 +8,6 @@ module.exports = {
 }
 
 function allConcepts (req, res) {
-  console.log(req.session)
-  console.log(req.isAuthenticated())
-  if (req.session.passport) {
-    var id = req.session.passport.user
-    console.log(id)
-  }
   db.getAllConcepts()
     .then((concepts) => {
       res.send(concepts)
@@ -25,22 +19,26 @@ function allConcepts (req, res) {
 }
 
 function myConcepts (req, res) {
-  console.log('user', req.user)
-  console.log('session', req.session)
-  console.log(req.isAuthenticated())
   if (req.session.passport) {
     var id = req.session.passport.user
-    console.log(id)
+    db.getMyConcepts(id)
+      .then((concepts) => {
+        res.send(concepts)
+      })
+      .catch((err) => {
+        console.log(err)
+        res.sendStatus(500)
+      })
+  } else {
+    db.getAllConcepts()
+      .then((concepts) => {
+        res.send(concepts)
+      })
+      .catch((err) => {
+        console.log(err)
+        res.sendStatus(500)
+      })
   }
-  // only get concept for this user
-  db.getAllConcepts()
-    .then((concepts) => {
-      res.send(concepts)
-    })
-    .catch((err) => {
-      console.log(err)
-      res.sendStatus(500)
-    })
 }
 
 function addConcept (req, res) {
