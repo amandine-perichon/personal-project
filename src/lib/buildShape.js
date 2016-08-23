@@ -56,6 +56,7 @@ export default function (shapeType, action) {
     case ("text"):
       return [{
       "type": "ForeignObjectText",
+      "id": Math.floor(Math.random() * 1e9), // FIXME 
       "attributes": {
           "x": fx,
           "y": fy,

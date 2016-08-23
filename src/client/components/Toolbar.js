@@ -13,7 +13,7 @@ export default React.createClass({
                   {elem}
               </button>
       } else {
-        return <button className="tool" name={elem} onClick={this.props.onToolChange} key={i}>{elem}</button>
+        return <button className="tool" name={elem} onClick={evt => this.props.onToolChange(evt.target.name)} key={i}>{elem}</button>
       }
     })
     return <div className="toolbar">{toolbar}</div>

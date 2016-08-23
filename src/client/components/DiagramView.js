@@ -8,10 +8,10 @@ export default React.createClass({
   },
   createSVG (concept, i) {
     const canvas = concept.diagram.map((elem, i) => {
-      return createReactShape(elem, i)
+      return createReactShape(elem, undefined, false, i)
     })
     return (
-      <div className="concept" key={i}>
+      <div className="concept" key={'concept'+i}>
         <h3 className="concept-title">{concept.title}</h3>
         <p className="concept-description">Description: {concept.description}</p>
         <svg  height="600"

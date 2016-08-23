@@ -1,6 +1,5 @@
 import React from 'react'
 import request from 'superagent'
-import createReactShape from '../../lib/createReactShape'
 import DiagramView from './DiagramView'
 
 export default React.createClass({

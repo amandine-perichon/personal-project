@@ -6,7 +6,8 @@ export default React.createClass({
   propTypes: {
     selectedTool: React.PropTypes.string.isRequired,
     shapes: React.PropTypes.array.isRequired,
-    onChange: React.PropTypes.func.isRequired
+    onChange: React.PropTypes.func.isRequired,
+    onToolChange: React.PropTypes.func.isRequired
   },
   getInitialState: function () {
     return {
@@ -27,7 +28,7 @@ export default React.createClass({
               onMouseDown={this.props.selectedTool !== 'cursor' && this.mouseDownAction}
               onMouseMove={this.props.selectedTool !== 'cursor' && this.mouseMoveAction}
               onMouseUp={this.props.selectedTool !== 'cursor' && this.mouseUpAction}>
-          {createCanvas(this.props.shapes)}
+          {createCanvas(this.props.shapes, this.onTextChange)}
           {temp}
         </svg>
       </div>
@@ -51,10 +52,20 @@ export default React.createClass({
       console.log('newDiagram', newDiagram)
       this.props.onChange(newDiagram)
       if (this.props.selectedTool === 'text') {
-        //change selected tool to cursor
+        this.props.onToolChange('cursor')
       }
     }
     this.setState({action: null})
+  },
+  onTextChange(updatedShape) {
+    const newDiagram = [
+      ...this.props.shapes.filter((shape) => {
+        return (shape.id !== updatedShape.id)
+      }),
+      updatedShape
+    ]
+    console.log(newDiagram)
+    this.props.onChange(newDiagram)
   }
 })
 
@@ -62,9 +73,9 @@ function creatingShapeAction (selectedTool) {
   return ['rectangle', 'ellipse', 'line', 'arrow'].includes(selectedTool)
 }
 
-function createCanvas (shapes) {
+function createCanvas (shapes, onTextChange) {
   return shapes.map((elem, i) => {
-    return createReactShape(elem, i)
+    return createReactShape(elem, onTextChange, true, i)
   })
 }
 
