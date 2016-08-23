@@ -24,9 +24,9 @@ export default React.createClass({
       <div className="diagram">
         <svg  height="600"
               width="800"
-              onMouseDown={this.mouseDownAction}
-              onMouseMove={this.mouseMoveAction}
-              onMouseUp={this.mouseUpAction}>
+              onMouseDown={this.props.selectedTool !== 'cursor' && this.mouseDownAction}
+              onMouseMove={this.props.selectedTool !== 'cursor' && this.mouseMoveAction}
+              onMouseUp={this.props.selectedTool !== 'cursor' && this.mouseUpAction}>
           {createCanvas(this.props.shapes)}
           {temp}
         </svg>
@@ -36,9 +36,6 @@ export default React.createClass({
   mouseDownAction: function (evt) {
     evt.preventDefault()
     this.setState({action: {initial: coord(evt), final: coord(evt)}})
-    if (this.props.selectedTool === "text") {
-      console.log("Text should be handled")
-    }
   },
   mouseMoveAction: function (evt) {
     evt.preventDefault()
@@ -48,9 +45,14 @@ export default React.createClass({
     }
   },
   mouseUpAction: function (evt) {
-    if (creatingShapeAction(this.props.selectedTool)) {
+    if (creatingShapeAction(this.props.selectedTool) || (this.props.selectedTool === 'text')) {
+      console.log('MouseUp')
       const newDiagram = [...this.props.shapes, ...buildShape(this.props.selectedTool, this.state.action)]
+      console.log('newDiagram', newDiagram)
       this.props.onChange(newDiagram)
+      if (this.props.selectedTool === 'text') {
+        //change selected tool to cursor
+      }
     }
     this.setState({action: null})
   }

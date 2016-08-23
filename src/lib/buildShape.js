@@ -54,14 +54,14 @@ export default function (shapeType, action) {
       }]
 
     case ("text"):
-      return {
-      "type": "SVGText",
+      return [{
+      "type": "ForeignObjectText",
       "attributes": {
           "x": fx,
           "y": fy,
-          "text": "Miaou"
+          "text": "Click to edit"
         }
-      }
+      }]
 
     case ("arrow"):
       const [h1x, h1y, h2x, h2y] = arrowhead(ix, iy, fx, fy)

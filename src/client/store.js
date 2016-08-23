@@ -24,7 +24,7 @@ const editorReducer = function (state = {"logged": {status: false, username: ""}
           const registerUpdate = Object.assign({}, {status: true, username: action.username})
           return Object.assign({}, state, {"logged": registerUpdate})
       case 'LOGOUT':
-        return Object.assign({}, state, {"logged": {status: false, username: "", _id: ""}})
+        return Object.assign({}, state, {"logged": {status: false, username: ""}})
     default:
       return state
   }

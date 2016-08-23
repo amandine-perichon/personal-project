@@ -43,6 +43,15 @@ header form label {
   pointer-events: none;
 }
 
+.diagram-editor .diagram svg .foreign {
+    text-align: left;
+}
+
+.diagram-editor .diagram svg div {
+    display: inline-block;
+    pointer-events: auto;
+}
+
 /* DIAGRAM STYLE */
 .concept {
   margin: 5px;
