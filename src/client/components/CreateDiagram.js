@@ -18,7 +18,7 @@ export default React.createClass({
   render () {
     return (
     <div className="editor-view">
-      <div>
+      <div className="editor-info">
         <form>
           <input  name="title"
                   placeholder="Title"

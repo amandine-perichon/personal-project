@@ -19,7 +19,7 @@ export default React.createClass({
   },
   render () {
     return (
-      <form onSubmit={this.register}>
+      <form className="register-form" onSubmit={this.register}>
         <label htmlFor="username" />Username<br/>
         <input type="text" name="username" />
         <label htmlFor="password" />Password<br/>

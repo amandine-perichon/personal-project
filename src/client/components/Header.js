@@ -34,7 +34,7 @@ export default React.createClass({
         <div>
           <header>
             <div className="row">
-              <h1><strong>CODE CONCEPTS</strong></h1>
+              <h1><Link to='/'>CODE CONCEPTS</Link></h1>
               <form onSubmit={this.login}>
                 <input type="text" name="username" placeholder="Username" />
                 <input type="password" name="password" placeholder="Password" />
@@ -51,11 +51,13 @@ export default React.createClass({
         <div>
           <header>
             <div className="row">
-              <h1>Code concepts</h1>
-              <h3 className="username">{this.props.logged.username}</h3>
-              <button type="button" name="logout" onClick={this.logout}><Link to='/'>LOGOUT</Link></button>
+              <h1><Link to='/'>CODE CONCEPTS</Link></h1>
+              <div>
+                <h3 className="username">Hi {this.props.logged.username}!</h3>
+                <button type="button" name="logout" onClick={this.logout}><Link to='/'>LOGOUT</Link></button>
+              </div>
             </div>
-            <div className="row">
+            <div className="row menu">
               <Link to='/'>Search</Link>
               <Link to='/mydiagrams'>My concepts</Link>
               <Link onClick={this.createNewDiagram} to='/create'>Create a new concept</Link>

@@ -80,15 +80,22 @@ body {
 
 header {
   background-color: $flat-blue-1;
+  border-bottom: 3px solid $flat-silver;
 }
 
-header h1 {
+header h1 a {
   color: $flat-clouds;
+  font-family: Verdana, sans-serif;
   font-weight: bold;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
-header div.row
+header h1 a:hover {
+  color: $flat-blue-4;
+}
+
+header div.row,
 header form,
 header h1,
 header form input,
@@ -109,10 +116,16 @@ header h1 {
 
 header form input,
 header form label,
-header button {
+header button{
   margin: 5px;
   margin-top: 35px;
   background-color: $flat-blue-4;
+}
+
+header .username {
+  margin: 30px;
+  margin-top: 45px;
+  display: inline;
 }
 
 header button {
@@ -124,26 +137,57 @@ header button a {
   text-decoration: inherit;
 }
 
+header button:hover {
+  color: $flat-blue-1;
+}
+
+header .menu a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+}
+
+header .menu a:hover {
+  color: $flat-blue-4;
+}
+
+/* REGISTER STYLE */
+
+.register-form {
+  margin: 30px;
+}
+
+.register-form button {
+  color: white;
+  background-color: $flat-blue-4;
+}
+
+.register-form button:hover {
+  color: $flat-blue-1;
+}
+
 /* DIAGRAM EDITOR STYLE */
 
 .editor-view {
   display: flex;
 }
-.editor-view div:first-child {
+.editor-view .toolbar,
+.editor-view .editor-info {
   padding-top: 50px;
   margin-right: 70px;
   margin-left: 50px;
   width: 600px;
 }
 
-.editor-view input {
+.editor-info input {
   font-size: 20px;
   height: 40px;
   width: 600px;
   margin-bottom: 20px;
 
 }
-.editor-view textarea {
+.editor-info textarea {
   font-size: 20px;
   width: 600px;
   height: 300px;
@@ -179,7 +223,7 @@ header button a {
 }
 
 .diagram-editor .diagram svg {
-  border: 3px solid $flat-gray-1;
+  border: 3px solid $flat-silver;
   border-radius: 1%;
   background-color: white;
 }
@@ -199,17 +243,21 @@ header button a {
 
 /* DIAGRAM VIEW STYLE */
 
+.diagram-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .search {
+  align-self: flex-end;
   margin-top: 10px;
   margin-bottom: 30px;
+  margin-right: 30px;
 }
 
 .search input {
-  width: 300px;
-}
-
-.diagram-view {
-
+  width: 400px;
 }
 
 .concept-list {
@@ -230,7 +278,7 @@ header button a {
 }
 
 .concept svg {
-  border: 3px solid $flat-gray-1;
+  border: 3px solid $flat-silver;
   border-radius: 1%;
   background-color: white;
 }
