@@ -31,6 +31,10 @@ module.exports = {
       '/myconcepts': {
         target: 'http://localhost:3000',
         secure: false
+      },
+      '/searchconcepts': {
+        target: 'http://localhost:3000',
+        secure: false
       }
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import request from 'superagent'
 import {Link} from 'react-router'
-import store from '../store'
+import store from '../reducers'
 
 export default React.createClass({
   props: {
@@ -33,7 +33,7 @@ export default React.createClass({
         <div>
           <header>
             <div className="row">
-              <h1>Code concepts</h1>
+              <h1>Code Concepts</h1>
               <form onSubmit={this.login}>
                 <label htmlFor="username" />Username <input type="text" name="username" />
                 <label htmlFor="password" />Password <input type="password" name="password" />

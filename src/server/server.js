@@ -19,12 +19,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 passport.serializeUser(function(user, done) {
-  console.log('serial',user)
   done(null, user._id)
 })
 
 passport.deserializeUser(function(id, done) {
-  console.log('deserial',id)
   db.findById(id)
     .then((user) => {
       console.log(user)
@@ -51,8 +49,6 @@ app.post('/register', passport.authenticate('signup'), function (req, res) {
 
 app.post('/login', passport.authenticate('login'), function (req, res) {
   if (req.user) {
-    console.log('login')
-    console.log(req.isAuthenticated())
     res.json({username: req.user.username})
   } else {
     res.sendStatus(401)
@@ -60,7 +56,6 @@ app.post('/login', passport.authenticate('login'), function (req, res) {
 })
 
 app.get('/logout', function(req, res) {
-  console.log('logout')
   req.logout()
   res.sendStatus(200)
 })
@@ -72,6 +67,8 @@ app.get('/myconcepts', routes.myConcepts)
 app.post('/concept', routes.addConcept)
 
 app.put('/concept', routes.changeConcept)
+
+app.get('/searchconcepts', routes.searchConcepts)
 
 db.connect()
   .then(() => {

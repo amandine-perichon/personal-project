@@ -13,7 +13,7 @@ export default React.createClass({
     return (
       <div className="concept" key={'concept'+i}>
         <h3 className="concept-title">{concept.title}</h3>
-        <p className="concept-description">Description: {concept.description}</p>
+        <p className="concept-description">DESCRIPTION <br />{concept.description}</p>
         <svg  height="600"
               width="800">
           {canvas}

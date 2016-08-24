@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, Route, hashHistory} from 'react-router'
 
-import store from './store'
+import store from './reducers'
 import CreateHeader from './components/CreateHeader'
 import CreateDiagram from './components/CreateDiagram'
 import MyConcepts from './components/MyConcepts'

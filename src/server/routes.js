@@ -4,11 +4,25 @@ module.exports = {
   allConcepts: allConcepts,
   myConcepts: myConcepts,
   addConcept: addConcept,
-  changeConcept: changeConcept
+  changeConcept: changeConcept,
+  searchConcepts: searchConcepts
 }
 
 function allConcepts (req, res) {
   db.getAllConcepts()
+    .then((concepts) => {
+      res.send(concepts)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+}
+
+function searchConcepts (req, res) {
+  const keyword = req.query.keyword
+  console.log('in Route Search Concept', keyword)
+  db.getSearchConcepts(keyword)
     .then((concepts) => {
       res.send(concepts)
     })

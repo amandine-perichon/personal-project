@@ -13,7 +13,8 @@ module.exports = {
   createConcept: createConcept,
   updateConcept: updateConcept,
   getAllConcepts: getAllConcepts,
-  getMyConcepts: getMyConcepts
+  getMyConcepts: getMyConcepts,
+  getSearchConcepts: getSearchConcepts
 }
 
 function connect () {
@@ -74,4 +75,25 @@ function getMyConcepts (id) {
       }
     })
   })
+}
+
+function getSearchConcepts (keyword) {
+  return new Promise((resolve, reject) => {
+    Concepts.find(createQuery(keyword)).toArray((err, docs) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(docs)
+      }
+    })
+  })
+}
+
+function createQuery (keyword) {
+  return {
+    $text:
+      {
+        $search: keyword,
+      }
+  }
 }

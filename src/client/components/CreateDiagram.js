@@ -1,6 +1,6 @@
 import React from 'react'
 import DiagramEditor from './DiagramEditor'
-import store from '../store'
+import store from '../reducers'
 
 export default React.createClass({
   changeTitle (evt) {
@@ -20,9 +20,12 @@ export default React.createClass({
     <div>
     <form>
       <input  name="title" placeholder="Title" onChange={this.changeTitle}/>
-      <input  name="description" placeholder="Diagram description" onChange={this.changeDescription} />
+      <input  type="textarea"
+              name="description"
+              placeholder="Diagram description"
+              onChange={this.changeDescription} />
     </form>
-    <button name="save" onClick={this.save}>SAVE</button>
+    <button className="save" onClick={this.save}>SAVE</button>
     <DiagramEditor diagram={store.getState().concept.diagram}
     onChange={this.changeConcept}/>
     </div>

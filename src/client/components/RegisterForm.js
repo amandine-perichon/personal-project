@@ -1,6 +1,6 @@
 import React from 'react'
 import request from 'superagent'
-import store from '../store'
+import store from '../reducers'
 
 export default React.createClass({
   register (evt) {

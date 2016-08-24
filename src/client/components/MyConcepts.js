@@ -16,6 +16,10 @@ export default React.createClass({
       })
   },
   render () {
-    return <DiagramView concepts={this.state.concepts} />
+    return (
+      <div className="diagram-view">
+        <DiagramView concepts={this.state.concepts} />
+      </div>
+    )
   }
 })

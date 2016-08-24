@@ -47,9 +47,7 @@ export default React.createClass({
   },
   mouseUpAction: function (evt) {
     if (creatingShapeAction(this.props.selectedTool) || (this.props.selectedTool === 'text')) {
-      console.log('MouseUp')
       const newDiagram = [...this.props.shapes, ...buildShape(this.props.selectedTool, this.state.action)]
-      console.log('newDiagram', newDiagram)
       this.props.onChange(newDiagram)
       if (this.props.selectedTool === 'text') {
         this.props.onToolChange('cursor')
@@ -64,7 +62,6 @@ export default React.createClass({
       }),
       updatedShape
     ]
-    console.log(newDiagram)
     this.props.onChange(newDiagram)
   }
 })

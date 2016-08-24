@@ -1,5 +1,5 @@
 import React from 'react'
-import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from '../client/components/shapes'
+import {SVGLine, SVGRectangle, SVGEllipse, SVGText, SVGArrow} from '../client/components/Shapes'
 
 export default function (shape, onTextChange, editable, key) {
   switch (shape.type) {
