@@ -26,6 +26,7 @@ export default React.createClass({
   },
   logout () {
     store.dispatch({type: "LOGOUT"})
+    store.dispatch({type: "GET_ALL_CONCEPTS_REQUEST"})
   },
   render () {
     if (!this.props.logged.status) {

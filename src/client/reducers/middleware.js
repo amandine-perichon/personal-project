@@ -64,7 +64,7 @@ export const searchConcepts = store => next => action => {
 }
 
 export const allConcepts = store => next => action => {
-  if (action.type === 'GET_ALL_CONCEPTS_REQUEST') {
+  if (action.type === ('GET_ALL_CONCEPTS_REQUEST')) {
     request
       .get('/concepts')
       .end((err, res) => {

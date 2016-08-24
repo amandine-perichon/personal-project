@@ -7,7 +7,7 @@ const search = function (state = [],
         return action.concepts
       case 'LOGOUT':
         return []
-
+        
       default:
         return state
   }
