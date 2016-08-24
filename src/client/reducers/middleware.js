@@ -64,7 +64,7 @@ export const searchConcepts = store => next => action => {
 }
 
 export const allConcepts = store => next => action => {
-  if (action.type === 'GET_ALL_CONCEPTS') {
+  if (action.type === 'GET_ALL_CONCEPTS_REQUEST') {
     request
       .get('/concepts')
       .end((err, res) => {
@@ -79,7 +79,7 @@ export const allConcepts = store => next => action => {
 }
 
 export const myConcepts = store => next => action => {
-  if (action.type === 'GET_MY_CONCEPTS') {
+  if (action.type === 'GET_MY_CONCEPTS_REQUEST') {
     request
       .get('/myconcepts')
       .end((err, res) => {

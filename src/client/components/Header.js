@@ -52,12 +52,12 @@ export default React.createClass({
             <div className="row">
               <h1>Code concepts</h1>
               <h3 className="username">{this.props.logged.username}</h3>
-              <button type="button" name="logout" onClick={this.logout}>LOGOUT</button>
+              <button type="button" name="logout" onClick={this.logout}><Link to='/'>LOGOUT</Link></button>
             </div>
             <div className="row">
               <Link to='/'>Search</Link>
-              <Link to='/mydiagrams'>My diagrams</Link>
-              <Link onClick={this.createNewDiagram} to='/create'>Create a new diagram</Link>
+              <Link to='/mydiagrams'>My concepts</Link>
+              <Link onClick={this.createNewDiagram} to='/create'>Create a new concept</Link>
             </div>
           </header>
           <section>{this.props.children}</section>

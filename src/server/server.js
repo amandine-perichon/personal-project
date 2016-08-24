@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000
 var SESSION_KEY = process.env.SESSION_KEY || 'WoofWoof'
 
 const app = express()
+
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(session({ secret: SESSION_KEY, resave: true, saveUninitialized: true }))
@@ -59,6 +60,8 @@ app.get('/logout', function(req, res) {
   req.logout()
   res.sendStatus(200)
 })
+
+// FIXME put all these routes in a Router from /api
 
 app.get('/concepts', routes.allConcepts)
 

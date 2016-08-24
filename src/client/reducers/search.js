@@ -5,6 +5,9 @@ const search = function (state = [],
         return action.concepts
       case "GET_ALL_CONCEPTS_SUCCEEDED":
         return action.concepts
+      case 'LOGOUT':
+        return []
+
       default:
         return state
   }

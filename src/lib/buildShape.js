@@ -1,6 +1,6 @@
 import arrowhead from './arrowhead'
 
-// return an array of shapes
+// buildShape returns an array of shapes
 
 export default function (shapeType, action) {
   let {initial: {x: ix, y: iy}, final: {x: fx, y: fy}} = action

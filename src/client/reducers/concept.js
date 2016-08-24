@@ -1,4 +1,6 @@
-const concept = function (state = {"_id": "", "title": "", "description": "", "diagram": []},
+const initialState = {"_id": "", "title": "", "description": "", "diagram": []}
+
+const concept = function (state = initialState,
                                 action) {
     switch(action.type) {
       case 'UPDATE_DIAGRAM':
@@ -9,6 +11,8 @@ const concept = function (state = {"_id": "", "title": "", "description": "", "d
         return Object.assign({}, state, {description: action.description})
       case 'CREATE_CONCEPT_SUCCEEDED':
         return action.concept
+      case 'LOGOUT':
+        return initialState
 
       default:
         return state

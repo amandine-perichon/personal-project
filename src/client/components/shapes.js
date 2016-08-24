@@ -49,16 +49,3 @@ export const SVGEllipse = React.createClass({
       strokeDasharray="5,10,5" />
   }
 })
-
-export const SVGText = React.createClass({
-  propTypes: {
-    x: React.PropTypes.number.isRequired,
-    y: React.PropTypes.number.isRequired,
-    text: React.PropTypes.string.isRequired
-  },
-  render: function () {
-    return  <text x={this.props.x} y={this.props.y} fill="green" strokeWidth="3">
-              {this.props.text}
-            </text>
-  }
-})

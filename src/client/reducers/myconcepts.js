@@ -3,6 +3,9 @@ const myconcepts = function (state = [],
     switch(action.type) {
       case "GET_MY_CONCEPTS_SUCCEEDED":
         return action.concepts
+      case 'LOGOUT':
+        return []
+
       default:
         return state
   }

@@ -5,14 +5,14 @@ import store from '../reducers'
 
 export default React.createClass({
   componentDidMount () {
-    store.dispatch({type: 'GET_ALL_CONCEPTS'})
+    store.dispatch({type: 'GET_ALL_CONCEPTS_REQUEST'})
   },
   searchConcepts (evt) {
     if (evt.keyCode === 13) {
       if (evt.target.value !== '') {
         store.dispatch({type: 'UPDATE_SEARCH_REQUEST', keyword: evt.target.value})
       } else {
-        store.dispatch({type: 'GET_ALL_CONCEPTS'})
+        store.dispatch({type: 'GET_ALL_CONCEPTS_REQUEST'})
       }
     }
   },
