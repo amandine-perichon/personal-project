@@ -9,6 +9,8 @@ import MyConcepts from './components/MyConcepts'
 import RegisterForm from './components/RegisterForm'
 import Search from './components/Search'
 
+import './diagramEditor.scss'
+
 refresh()
 store.subscribe(refresh)
 

@@ -23,8 +23,8 @@ export default React.createClass({
 
     return (
       <div className="diagram">
-        <svg  height="600"
-              width="800"
+        <svg  height="800"
+              width="1000"
               onMouseDown={this.props.selectedTool !== 'cursor' && this.mouseDownAction}
               onMouseMove={this.props.selectedTool !== 'cursor' && this.mouseMoveAction}
               onMouseUp={this.props.selectedTool !== 'cursor' && this.mouseUpAction}>

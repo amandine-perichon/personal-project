@@ -17,15 +17,18 @@ export default React.createClass({
   },
   render () {
     return (
-    <div>
-    <form>
-      <input  name="title" placeholder="Title" onChange={this.changeTitle}/>
-      <input  type="textarea"
-              name="description"
-              placeholder="Diagram description"
-              onChange={this.changeDescription} />
-    </form>
-    <button className="save" onClick={this.save}>SAVE</button>
+    <div className="editor-view">
+      <div>
+        <form>
+          <input  name="title"
+                  placeholder="Title"
+                  onChange={this.changeTitle}/><br />
+          <textarea  name="description"
+                  placeholder="Diagram description"
+                  onChange={this.changeDescription} />
+        </form>
+        <button className="save" onClick={this.save}>SAVE</button>
+      </div>
     <DiagramEditor diagram={store.getState().concept.diagram}
     onChange={this.changeConcept}/>
     </div>

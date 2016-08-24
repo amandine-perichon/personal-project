@@ -34,10 +34,10 @@ export default React.createClass({
         <div>
           <header>
             <div className="row">
-              <h1>Code Concepts</h1>
+              <h1><strong>CODE CONCEPTS</strong></h1>
               <form onSubmit={this.login}>
-                <label htmlFor="username" />Username <input type="text" name="username" />
-                <label htmlFor="password" />Password <input type="password" name="password" />
+                <input type="text" name="username" placeholder="Username" />
+                <input type="password" name="password" placeholder="Password" />
                 <button type="submit" name="login">Login</button>
               </form>
               <button type="button" name="register"><Link to='/register'>Register</Link></button>

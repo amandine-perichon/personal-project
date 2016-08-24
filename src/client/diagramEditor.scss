@@ -1,0 +1,249 @@
+/* COLORS */
+
+$flat-turquoise: #1ABC9C;
+$flat-blue-sea: #16A085;
+$flat-emerald: #2ECC71;
+$flat-nephritis: #27AE60;
+
+// Blues
+$flat-peter-river: #3498DB;
+$flat-belize-hole: #2980B9;
+$flat-wet-asphalt: #34495E;
+$flat-midnight-blue: #2C3E50;
+
+// Purples
+$flat-amethyst: #9B59B6;
+$flat-wisteria: #8E44AD;
+
+// Yellows
+$flat-sunflower: #F1C40F;
+
+// Oranges
+$flat-orange: #F39C12;
+$flat-carrot: #E67E22;
+$flat-pumpkin: #D35400;
+
+// Reds
+$flat-alizarin: #E74C3C;
+$flat-pomegranate: #C0392B;
+
+// Grays
+$flat-clouds: #ECF0F1;
+$flat-silver: #BDC3C7;
+$flat-concrete: #95A5A6;
+$flat-asbestos: #7F8C8D;
+
+// Aliases make colors easier to remember.
+
+// Greens
+$flat-blue-1: $flat-turquoise;
+$flat-blue-2: $flat-blue-sea;
+$flat-blue-3: $flat-emerald;
+$flat-blue-4: $flat-nephritis;
+
+// Blues
+$flat-blue-1: $flat-peter-river;
+$flat-blue-2: $flat-belize-hole;
+$flat-blue-3: $flat-wet-asphalt;
+$flat-blue-4: $flat-midnight-blue;
+
+// Purples
+$flat-purple-1: $flat-amethyst;
+$flat-purple-2: $flat-wisteria;
+
+// Yellows
+$flat-yellow-1: $flat-sunflower;
+
+// Oranges
+$flat-orange-1: $flat-orange;
+$flat-orange-2: $flat-carrot;
+$flat-orange-3: $flat-pumpkin;
+
+// Refs
+$flat-red-1: $flat-alizarin;
+$flat-red-2: $flat-pomegranate;
+
+// Grays
+$flat-gray-1: $flat-clouds;
+$flat-gray-2: $flat-silver;
+$flat-gray-3: $flat-concrete;
+$flat-gray-4: $flat-asbestos;
+
+/* BACKGROUND */
+
+body {
+  margin: 0;
+  background-color: $flat-gray-1;
+}
+
+/* HEADER STYLE */
+
+header {
+  background-color: $flat-blue-1;
+}
+
+header h1 {
+  color: $flat-clouds;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+header div.row
+header form,
+header h1,
+header form input,
+header form label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+header form label {
+  display: block;
+}
+
+header h1 {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+header form input,
+header form label,
+header button {
+  margin: 5px;
+  margin-top: 35px;
+  background-color: $flat-blue-4;
+}
+
+header button {
+  color: white;
+}
+
+header button a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* DIAGRAM EDITOR STYLE */
+
+.editor-view {
+  display: flex;
+}
+.editor-view div:first-child {
+  padding-top: 50px;
+  margin-right: 70px;
+  margin-left: 50px;
+  width: 600px;
+}
+
+.editor-view input {
+  font-size: 20px;
+  height: 40px;
+  width: 600px;
+  margin-bottom: 20px;
+
+}
+.editor-view textarea {
+  font-size: 20px;
+  width: 600px;
+  height: 300px;
+}
+
+.save {
+  color: white;
+  background-color: $flat-blue-4;
+}
+
+.diagram-editor {
+  background-color: none;
+}
+
+.diagram-editor .toolbar {
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.diagram-editor .toolbar .tool {
+  background-color: white;
+}
+
+.diagram-editor .toolbar .tool.selected {
+  color: white;
+  background-color: $flat-blue-4;
+}
+
+.diagram-editor .diagram {
+  padding: 0;
+  width: 800px;
+}
+
+.diagram-editor .diagram svg {
+  border: 3px solid $flat-gray-1;
+  border-radius: 1%;
+  background-color: white;
+}
+
+.diagram-editor .diagram svg * {
+  pointer-events: none;
+}
+
+.diagram-editor .diagram svg .foreign {
+    text-align: left;
+}
+
+.diagram-editor .diagram svg div {
+    display: inline-block;
+    pointer-events: auto;
+}
+
+/* DIAGRAM VIEW STYLE */
+
+.search {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.search input {
+  width: 300px;
+}
+
+.diagram-view {
+
+}
+
+.concept-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.concept {
+  margin: 5px;
+  display: flex;
+}
+
+.concept .concept-info {
+  margin-right: 70px;
+  margin-left: 50px;
+  width: 600px;
+}
+
+.concept svg {
+  border: 3px solid $flat-gray-1;
+  border-radius: 1%;
+  background-color: white;
+}
+
+.concept-title {
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.concept-title strong {
+  font-size: 50px;
+}
+
+.concept-description {
+  /*color: green;*/
+}

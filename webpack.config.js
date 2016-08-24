@@ -3,7 +3,8 @@ module.exports = {
   output: 'bundle.js',
   module: {
     loaders: [
-      { loader: 'babel-loader', test: /\.js$/, exclude: 'node_modules' } ]
+      { loader: 'babel-loader', test: /\.js$/, exclude: 'node_modules' },
+      { loaders: ["style", "css", "sass"], test: /\.scss$/, exclude: 'node_modules' } ]
   },
   devtool: 'source-map',
   devServer: {
