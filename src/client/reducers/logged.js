@@ -1,6 +1,3 @@
-import {createStore, applyMiddleware, compose} from 'redux'
-import request from 'superagent'
-
 const logged = function (state = {status: false, username: ""}, action) {
     switch(action.type) {
       case 'LOGIN':
@@ -9,6 +6,7 @@ const logged = function (state = {status: false, username: ""}, action) {
           return {status: true, username: action.username}
       case 'LOGOUT':
         return {status: false, username: ""}
+
     default:
       return state
   }

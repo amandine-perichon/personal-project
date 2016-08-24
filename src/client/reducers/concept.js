@@ -1,5 +1,3 @@
-import {createStore, applyMiddleware, compose} from 'redux'
-
 const concept = function (state = {"_id": "", "title": "", "description": "", "diagram": []},
                                 action) {
     switch(action.type) {

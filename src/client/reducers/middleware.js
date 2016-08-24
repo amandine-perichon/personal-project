@@ -47,3 +47,48 @@ export const logOut = store => next => action => {
   }
   return next(action)
 }
+
+export const searchConcepts = store => next => action => {
+  if (action.type === "UPDATE_SEARCH_REQUEST") {
+    request
+      .get('/searchconcepts?keyword=' + action.keyword)
+      .end((err, res) => {
+        if (err) {
+          console.log(err)
+        } else {
+          store.dispatch({ type: "UPDATE_SEARCH_SUCCEEDED", concepts: res.body})
+        }
+      })
+  }
+  return next(action)
+}
+
+export const allConcepts = store => next => action => {
+  if (action.type === 'GET_ALL_CONCEPTS') {
+    request
+      .get('/concepts')
+      .end((err, res) => {
+        if (err) {
+          console.log(err)
+        } else {
+          store.dispatch({ type: "GET_ALL_CONCEPTS_SUCCEEDED", concepts: res.body})
+        }
+      })
+  }
+  return next(action)
+}
+
+export const myConcepts = store => next => action => {
+  if (action.type === 'GET_MY_CONCEPTS') {
+    request
+      .get('/myconcepts')
+      .end((err, res) => {
+        if (err) {
+          console.log(err)
+        } else {
+          store.dispatch({ type: "GET_MY_CONCEPTS_SUCCEEDED", concepts: res.body})
+        }
+      })
+  }
+  return next(action)
+}
