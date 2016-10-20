@@ -13,6 +13,8 @@ var SESSION_KEY = process.env.SESSION_KEY || 'WoofWoof'
 
 const app = express()
 
+app.use(express.static(__dirname + './../public'))
+
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(session({ secret: SESSION_KEY, resave: true, saveUninitialized: true }))
@@ -26,7 +28,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
   db.findById(id)
     .then((user) => {
-      console.log(user)
       done(null, user)
     })
     .catch((err) => {

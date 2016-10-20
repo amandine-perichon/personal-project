@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline",
+    "start": "node ./src/server/server.js",
+    "dev": "webpack-dev-server --hot --inline",
     "server": "node ./src/server/server.js",
-    "build": "webpack ./src/index.js app.js",
+    "build": "webpack ./src/client/index.js ./src/public/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Amandine Perichon",
