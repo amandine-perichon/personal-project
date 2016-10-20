@@ -10,6 +10,9 @@
     "build": "webpack ./src/client/index.js ./src/public/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "6"
+  },
   "author": "Amandine Perichon",
   "license": "ISC",
   "devDependencies": {
