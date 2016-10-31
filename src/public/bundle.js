@@ -30227,15 +30227,25 @@
 	  props: {
 	    logged: _react2.default.PropTypes.object.isRequired
 	  },
+	  getInitialState: function getInitialState() {
+	    return {
+	      error: ""
+	    };
+	  },
 	  createNewDiagram: function createNewDiagram() {
 	    _reducers2.default.dispatch({ type: "CREATE_CONCEPT_REQUESTED" });
 	  },
 	  login: function login(evt) {
+	    var _this = this;
+	
 	    evt.preventDefault();
 	    _superagent2.default.post('/login').send({ username: evt.target.username.value, password: evt.target.password.value }).end(function (err, res) {
 	      if (err) {
-	        console.log("PROBLEM WITH AUTH");
-	        console.log(err);
+	        _this.setState({ error: "There was a problem with your login" }, function () {
+	          setTimeout(function () {
+	            return _this.setState({ error: "" });
+	          }, 3000);
+	        });
 	      } else {
 	        _reducers2.default.dispatch({ type: "LOGIN", username: res.body.username });
 	      }
@@ -30266,14 +30276,23 @@
 	              )
 	            ),
 	            _react2.default.createElement(
-	              'form',
-	              { onSubmit: this.login },
-	              _react2.default.createElement('input', { type: 'text', name: 'username', placeholder: 'Username' }),
-	              _react2.default.createElement('input', { type: 'password', name: 'password', placeholder: 'Password' }),
+	              'div',
+	              null,
 	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit', name: 'login' },
-	                'Login'
+	                'form',
+	                { onSubmit: this.login },
+	                _react2.default.createElement('input', { type: 'text', name: 'username', placeholder: 'Username' }),
+	                _react2.default.createElement('input', { type: 'password', name: 'password', placeholder: 'Password' }),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'submit', name: 'login' },
+	                  'Login'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'error' },
+	                this.state.error
 	              )
 	            ),
 	            _react2.default.createElement(
@@ -30597,6 +30616,7 @@
 	        'svg',
 	        { height: '800',
 	          width: '1000',
+	          viewBox: '0 0 1000 800',
 	          onMouseDown: this.props.selectedTool !== 'cursor' && this.mouseDownAction,
 	          onMouseMove: this.props.selectedTool !== 'cursor' && this.mouseMoveAction,
 	          onMouseUp: this.props.selectedTool !== 'cursor' && this.mouseUpAction },
@@ -32358,6 +32378,7 @@
 	    var canvas = concept.diagram.map(function (elem, i) {
 	      return (0, _createReactShape2.default)(elem, undefined, false, i);
 	    });
+	
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'concept', key: 'concept' + i },
@@ -32390,14 +32411,17 @@
 	      ),
 	      _react2.default.createElement(
 	        'svg',
-	        { height: '800px',
+	        { viewBox: '0 0 1000 800',
+	          height: '800px',
 	          width: '1000px' },
 	        canvas
 	      )
 	    );
 	  },
 	  render: function render() {
-	    var concepts = this.props.concepts.map(this.createSVG);
+	    var concepts = this.props.concepts.filter(function (elem) {
+	      return elem.diagram.length !== 0;
+	    }).map(this.createSVG);
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'concept-list' },
@@ -32432,12 +32456,22 @@
 	
 	exports.default = _react2.default.createClass({
 	  displayName: 'RegisterForm',
+	  getInitialState: function getInitialState() {
+	    return {
+	      error: ""
+	    };
+	  },
 	  register: function register(evt) {
+	    var _this = this;
+	
 	    evt.preventDefault();
 	    _superagent2.default.post('/register').send({ username: evt.target.username.value, password: evt.target.password.value }).end(function (err, res) {
 	      if (err) {
-	        console.log("PROBLEM WITH REGISTER");
-	        console.log(err);
+	        _this.setState({ error: "There was a problem with your registration" }, function () {
+	          setTimeout(function () {
+	            return _this.setState({ error: "" });
+	          }, 3000);
+	        });
 	      } else {
 	        _reducers2.default.dispatch({ type: "REGISTER", username: res.body.username });
 	      }
@@ -32445,21 +32479,30 @@
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
-	      'form',
-	      { className: 'register-form', onSubmit: this.register },
-	      _react2.default.createElement('label', { htmlFor: 'username' }),
-	      'Username',
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement('input', { type: 'text', name: 'username' }),
-	      _react2.default.createElement('label', { htmlFor: 'password' }),
-	      'Password',
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement('input', { type: 'password', name: 'password' }),
-	      _react2.default.createElement('br', null),
+	      'div',
+	      null,
 	      _react2.default.createElement(
-	        'button',
-	        { type: 'submit', name: 'register' },
-	        'Register'
+	        'div',
+	        { className: 'error' },
+	        this.state.error
+	      ),
+	      _react2.default.createElement(
+	        'form',
+	        { className: 'register-form', onSubmit: this.register },
+	        _react2.default.createElement('label', { htmlFor: 'username' }),
+	        'Username',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'text', name: 'username' }),
+	        _react2.default.createElement('label', { htmlFor: 'password' }),
+	        'Password',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'password', name: 'password' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit', name: 'register' },
+	          'Register'
+	        )
 	      )
 	    );
 	  }
@@ -32559,7 +32602,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* COLORS */\n/* BACKGROUND */\nbody {\n  margin: 0;\n  background-color: #ECF0F1; }\n\n/* HEADER STYLE */\nheader {\n  background-color: #3498DB;\n  border-bottom: 3px solid #BDC3C7; }\n\nheader h1 a {\n  color: #ECF0F1;\n  font-family: Verdana, sans-serif;\n  font-weight: bold;\n  text-transform: uppercase;\n  text-decoration: none; }\n\nheader h1 a:hover {\n  color: #2C3E50; }\n\nheader div.row,\nheader form,\nheader h1,\nheader form input,\nheader form label {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around; }\n\nheader form label {\n  display: block; }\n\nheader h1 {\n  margin-top: 20px;\n  margin-left: 20px; }\n\nheader form input,\nheader form label,\nheader button {\n  margin: 5px;\n  margin-top: 35px;\n  background-color: #2C3E50; }\n\nheader .username {\n  margin: 30px;\n  margin-top: 45px;\n  display: inline; }\n\nheader button {\n  color: white; }\n\nheader button a {\n  color: inherit;\n  text-decoration: inherit; }\n\nheader button:hover {\n  color: #3498DB; }\n\nheader .menu a {\n  text-transform: uppercase;\n  text-decoration: none;\n  color: white;\n  font-size: 30px; }\n\nheader .menu a:hover {\n  color: #2C3E50; }\n\n/* REGISTER STYLE */\n.register-form {\n  margin: 30px; }\n\n.register-form button {\n  color: white;\n  background-color: #2C3E50; }\n\n.register-form button:hover {\n  color: #3498DB; }\n\n/* DIAGRAM EDITOR STYLE */\n.editor-view {\n  display: flex; }\n\n.editor-view .toolbar,\n.editor-view .editor-info {\n  padding-top: 50px;\n  margin-right: 70px;\n  margin-left: 50px;\n  width: 600px; }\n\n.editor-info input {\n  font-size: 20px;\n  height: 40px;\n  width: 600px;\n  margin-bottom: 20px; }\n\n.editor-info textarea {\n  font-size: 20px;\n  width: 600px;\n  height: 300px; }\n\n.save {\n  color: white;\n  background-color: #2C3E50; }\n\n.diagram-editor {\n  background-color: none; }\n\n.diagram-editor .toolbar {\n  margin: 5px;\n  display: flex;\n  justify-content: space-between; }\n\n.diagram-editor .toolbar .tool {\n  background-color: white; }\n\n.diagram-editor .toolbar .tool.selected {\n  color: white;\n  background-color: #2C3E50; }\n\n.diagram-editor .diagram {\n  padding: 0;\n  width: 800px; }\n\n.diagram-editor .diagram svg {\n  border: 3px solid #BDC3C7;\n  border-radius: 1%;\n  background-color: white; }\n\n.diagram-editor .diagram svg * {\n  pointer-events: none; }\n\n.diagram-editor .diagram svg .foreign {\n  text-align: left; }\n\n.diagram-editor .diagram svg div {\n  display: inline-block;\n  pointer-events: auto; }\n\n/* DIAGRAM VIEW STYLE */\n.diagram-view {\n  display: flex;\n  flex-direction: column;\n  justify-content: center; }\n\n.search {\n  align-self: flex-end;\n  margin-top: 10px;\n  margin-bottom: 30px;\n  margin-right: 30px; }\n\n.search input {\n  width: 400px; }\n\n.concept-list {\n  display: flex;\n  flex-direction: column;\n  justify-content: center; }\n\n.concept {\n  margin: 5px;\n  display: flex; }\n\n.concept .concept-info {\n  margin-right: 70px;\n  margin-left: 50px;\n  width: 600px; }\n\n.concept svg {\n  border: 3px solid #BDC3C7;\n  border-radius: 1%;\n  background-color: white; }\n\n.concept-title {\n  text-transform: uppercase;\n  margin-bottom: 5px; }\n\n.concept-title strong {\n  font-size: 50px; }\n\n.concept-description {\n  /*color: green;*/ }\n", ""]);
+	exports.push([module.id, "/* COLORS */\n/* BACKGROUND */\nbody {\n  margin: 0;\n  background-color: #ECF0F1; }\n\n/* HEADER STYLE */\nheader {\n  background-color: #3498DB;\n  border-bottom: 3px solid #BDC3C7; }\n\nheader h1 a {\n  color: #ECF0F1;\n  font-family: Verdana, sans-serif;\n  font-weight: bold;\n  text-transform: uppercase;\n  text-decoration: none; }\n\nheader h1 a:hover {\n  color: #2C3E50; }\n\nheader div.row,\nheader form,\nheader h1,\nheader form input,\nheader form label {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around; }\n\nheader form label {\n  display: block; }\n\nheader h1 {\n  margin-top: 20px;\n  margin-left: 20px; }\n\nheader form input,\nheader form label,\nheader button {\n  margin: 5px;\n  margin-top: 35px;\n  background-color: #2C3E50; }\n\nheader .username {\n  margin: 30px;\n  margin-top: 45px;\n  display: inline; }\n\nheader button {\n  color: white; }\n\nheader button a {\n  color: inherit;\n  text-decoration: inherit; }\n\nheader button:hover {\n  color: #3498DB; }\n\nheader .menu a {\n  text-transform: uppercase;\n  text-decoration: none;\n  color: white;\n  font-size: 30px; }\n\nheader .menu a:hover {\n  color: #2C3E50; }\n\n/* REGISTER STYLE */\n.register-form {\n  margin: 30px; }\n\n.register-form button {\n  color: white;\n  background-color: #2C3E50; }\n\n.register-form button:hover {\n  color: #3498DB; }\n\n/* DIAGRAM EDITOR STYLE */\n.editor-view {\n  display: flex; }\n\n.editor-view .toolbar,\n.editor-view .editor-info {\n  padding-top: 50px;\n  margin-right: 70px;\n  margin-left: 50px;\n  width: 600px; }\n\n.editor-info input {\n  font-size: 20px;\n  height: 40px;\n  width: 600px;\n  margin-bottom: 20px; }\n\n.editor-info textarea {\n  font-size: 20px;\n  width: 600px;\n  height: 300px; }\n\n.save {\n  color: white;\n  background-color: #2C3E50; }\n\n.diagram-editor {\n  background-color: none; }\n\n.diagram-editor .toolbar {\n  margin: 5px;\n  display: flex;\n  justify-content: space-between; }\n\n.diagram-editor .toolbar .tool {\n  background-color: white; }\n\n.diagram-editor .toolbar .tool.selected {\n  color: white;\n  background-color: #2C3E50; }\n\n.diagram-editor .diagram {\n  padding: 0;\n  width: 800px; }\n\n.diagram-editor .diagram svg {\n  border: 3px solid #BDC3C7;\n  border-radius: 1%;\n  background-color: white; }\n\n.diagram-editor .diagram svg * {\n  pointer-events: none; }\n\n.diagram-editor .diagram svg .foreign {\n  text-align: left; }\n\n.diagram-editor .diagram svg div {\n  display: inline-block;\n  pointer-events: auto; }\n\n/* DIAGRAM VIEW STYLE */\n.diagram-view {\n  display: flex;\n  flex-direction: column;\n  justify-content: center; }\n\n.search {\n  align-self: flex-end;\n  margin-top: 10px;\n  margin-bottom: 30px;\n  margin-right: 30px; }\n\n.search input {\n  width: 400px; }\n\n.concept-list {\n  display: flex;\n  flex-direction: column;\n  justify-content: center; }\n\n.concept {\n  margin: 5px;\n  display: flex; }\n\n.concept .concept-info {\n  margin-right: 70px;\n  margin-left: 50px;\n  width: 40%; }\n\n.concept svg {\n  border: 3px solid #BDC3C7;\n  border-radius: 1%;\n  background-color: white;\n  width: 60%;\n  height: 100%; }\n\n.concept-title {\n  text-transform: uppercase;\n  margin-bottom: 5px; }\n\n.concept-title strong {\n  font-size: 50px; }\n\n.concept-description {\n  /*color: green;*/ }\n\n/* ERROR STYLE */\n.error {\n  padding-left: 5px;\n  color: #ba2e07; }\n", ""]);
 	
 	// exports
 

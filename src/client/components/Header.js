@@ -7,6 +7,11 @@ export default React.createClass({
   props: {
     logged: React.PropTypes.object.isRequired
   },
+  getInitialState() {
+    return {
+      error: ""
+    }
+  },
   createNewDiagram () {
     store.dispatch({type: "CREATE_CONCEPT_REQUESTED"})
   },
@@ -17,8 +22,9 @@ export default React.createClass({
       .send({username: evt.target.username.value, password:evt.target.password.value})
       .end((err, res) => {
         if (err) {
-          console.log("PROBLEM WITH AUTH")
-          console.log(err)
+          this.setState({error: "There was a problem with your login"}, () => {
+            setTimeout(() => this.setState({error: ""}), 3000)
+          })
         } else {
             store.dispatch({type: "LOGIN", username: res.body.username})
         }
@@ -35,11 +41,14 @@ export default React.createClass({
           <header>
             <div className="row">
               <h1><Link to='/'>CODE CONCEPTS</Link></h1>
-              <form onSubmit={this.login}>
-                <input type="text" name="username" placeholder="Username" />
-                <input type="password" name="password" placeholder="Password" />
-                <button type="submit" name="login">Login</button>
-              </form>
+              <div>
+                <form onSubmit={this.login}>
+                  <input type="text" name="username" placeholder="Username" />
+                  <input type="password" name="password" placeholder="Password" />
+                  <button type="submit" name="login">Login</button>
+                </form>
+                <div className="error">{this.state.error}</div>
+              </div>
               <button type="button" name="register"><Link to='/register'>Register</Link></button>
             </div>
           </header>

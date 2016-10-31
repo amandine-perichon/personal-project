@@ -3,6 +3,11 @@ import request from 'superagent'
 import store from '../reducers'
 
 export default React.createClass({
+  getInitialState() {
+    return {
+      error: ""
+    }
+  },
   register (evt) {
     evt.preventDefault()
     request
@@ -10,8 +15,9 @@ export default React.createClass({
       .send({username: evt.target.username.value, password:evt.target.password.value})
       .end((err, res) => {
         if (err) {
-          console.log("PROBLEM WITH REGISTER")
-          console.log(err)
+          this.setState({error: "There was a problem with your registration"}, () => {
+            setTimeout(() => this.setState({error: ""}), 3000)
+          })
         } else {
           store.dispatch({type: "REGISTER", username: res.body.username})
         }
@@ -19,6 +25,8 @@ export default React.createClass({
   },
   render () {
     return (
+      <div>
+      <div className="error">{this.state.error}</div>
       <form className="register-form" onSubmit={this.register}>
         <label htmlFor="username" />Username<br/>
         <input type="text" name="username" />
@@ -26,6 +34,7 @@ export default React.createClass({
         <input type="password" name="password" /><br/>
         <button type="submit" name="register">Register</button>
       </form>
+      </div>
     )
   }
 })

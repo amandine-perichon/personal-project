@@ -274,13 +274,15 @@ header .menu a:hover {
 .concept .concept-info {
   margin-right: 70px;
   margin-left: 50px;
-  width: 600px;
+  width: 40%;
 }
 
 .concept svg {
   border: 3px solid $flat-silver;
   border-radius: 1%;
   background-color: white;
+  width: 60%;
+  height: 100%;
 }
 
 .concept-title {
@@ -294,4 +296,11 @@ header .menu a:hover {
 
 .concept-description {
   /*color: green;*/
+}
+
+/* ERROR STYLE */
+
+.error {
+  padding-left: 5px;
+  color: #ba2e07;
 }
