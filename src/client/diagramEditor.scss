@@ -122,6 +122,10 @@ header button{
   background-color: $flat-blue-4;
 }
 
+header form {
+  margin-bottom: 0;
+}
+
 header .username {
   margin: 30px;
   margin-top: 45px;
@@ -175,22 +179,24 @@ header .menu a:hover {
 .editor-view .toolbar,
 .editor-view .editor-info {
   padding-top: 50px;
-  margin-right: 70px;
-  margin-left: 50px;
-  width: 600px;
+}
+
+.editor-info {
+  width: 30%;
+  padding: 1rem;
 }
 
 .editor-info input {
   font-size: 20px;
-  height: 40px;
-  width: 600px;
-  margin-bottom: 20px;
+  height: 3rem;;
+  width: 100%;
+  margin-bottom: 1rem;
 
 }
 .editor-info textarea {
   font-size: 20px;
-  width: 600px;
-  height: 300px;
+  width: 100%;
+  height: 30rem;;
 }
 
 .save {
@@ -200,6 +206,8 @@ header .menu a:hover {
 
 .diagram-editor {
   background-color: none;
+  width: 70%;
+  padding: 1rem;
 }
 
 .diagram-editor .toolbar {
@@ -219,7 +227,7 @@ header .menu a:hover {
 
 .diagram-editor .diagram {
   padding: 0;
-  width: 800px;
+  width: 100%;
 }
 
 .diagram-editor .diagram svg {
@@ -302,5 +310,5 @@ header .menu a:hover {
 
 .error {
   padding-left: 5px;
-  color: #ba2e07;
+  color: #ffbf22;
 }

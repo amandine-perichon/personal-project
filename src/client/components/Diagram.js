@@ -23,9 +23,7 @@ export default React.createClass({
 
     return (
       <div className="diagram">
-        <svg  height="800"
-              width="1000"
-              viewBox="0 0 1000 800"
+        <svg  viewBox="0 0 1000 800"
               onMouseDown={this.props.selectedTool !== 'cursor' && this.mouseDownAction}
               onMouseMove={this.props.selectedTool !== 'cursor' && this.mouseMoveAction}
               onMouseUp={this.props.selectedTool !== 'cursor' && this.mouseUpAction}>
