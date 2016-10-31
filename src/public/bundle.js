@@ -32390,8 +32390,8 @@
 	      ),
 	      _react2.default.createElement(
 	        'svg',
-	        { height: '800',
-	          width: '1000' },
+	        { height: '800px',
+	          width: '1000px' },
 	        canvas
 	      )
 	    );

@@ -16,8 +16,8 @@ export default React.createClass({
           <h3 className="concept-title"><strong>CONCEPT</strong><br />{concept.title}</h3>
           <p className="concept-description"><strong>DESCRIPTION</strong> <br />{concept.description}</p>
         </div>
-        <svg  height="800"
-              width="1000">
+        <svg  height="800px"
+              width="1000px">
           {canvas}
         </svg>
       </div>

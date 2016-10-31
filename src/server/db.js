@@ -1,7 +1,8 @@
 const Mongo = require('mongodb')
 const MongoClient = Mongo.MongoClient
 const ObjectID = Mongo.ObjectID
-const url = 'mongodb://amandine:444719@ds161495.mlab.com:61495/diagrameditor'
+const pwd = process.env.DBPWD
+const url = `mongodb://amandine:${pwd}@ds161495.mlab.com:61495/diagrameditor`
 let Users = null
 let Concepts = null
 
