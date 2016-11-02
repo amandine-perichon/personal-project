@@ -176,9 +176,10 @@ header .menu a:hover {
 .editor-view {
   display: flex;
 }
+
 .editor-view .toolbar,
 .editor-view .editor-info {
-  padding-top: 50px;
+  padding-top: 1rem;
 }
 
 .editor-info {
@@ -191,8 +192,9 @@ header .menu a:hover {
   height: 3rem;;
   width: 100%;
   margin-bottom: 1rem;
-
+  margin-top: 1.5rem;
 }
+
 .editor-info textarea {
   font-size: 20px;
   width: 100%;
@@ -213,7 +215,7 @@ header .menu a:hover {
 .diagram-editor .toolbar {
   margin: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .diagram-editor .toolbar .tool {
@@ -231,7 +233,7 @@ header .menu a:hover {
 }
 
 .diagram-editor .diagram svg {
-  border: 3px solid $flat-silver;
+  border: 1px solid $flat-silver;
   border-radius: 1%;
   background-color: white;
 }

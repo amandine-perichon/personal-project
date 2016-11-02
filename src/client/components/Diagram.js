@@ -76,8 +76,13 @@ function createCanvas (shapes, onTextChange) {
 }
 
 function coord (evt) {
+  const svg = evt.nativeEvent.target
+  let pt = svg.createSVGPoint()
+  pt.x = evt.clientX
+  pt.y = evt.clientY
+  pt = pt.matrixTransform(svg.getScreenCTM().inverse())
   return {
-    x: evt.nativeEvent.offsetX,
-    y: evt.nativeEvent.offsetY
+    x: Math.floor(pt.x),
+    y:Math.floor(pt.y)
   }
 }

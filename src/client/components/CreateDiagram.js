@@ -21,6 +21,7 @@ export default React.createClass({
       <div className="editor-info">
         <form>
           <input  name="title"
+                  type="text"
                   placeholder="Title"
                   onChange={this.changeTitle}/><br />
           <textarea  name="description"
