@@ -1,5 +1,7 @@
 import React from 'react'
 import request from 'superagent'
+import { hashHistory } from 'react-router'
+
 import store from '../reducers'
 
 export default React.createClass({
@@ -20,6 +22,7 @@ export default React.createClass({
           })
         } else {
           store.dispatch({type: "REGISTER", username: res.body.username})
+          hashHistory.push('/')
         }
       })
   },

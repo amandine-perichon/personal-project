@@ -32452,6 +32452,8 @@
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
+	var _reactRouter = __webpack_require__(176);
+	
 	var _reducers = __webpack_require__(239);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
@@ -32478,6 +32480,7 @@
 	        });
 	      } else {
 	        _reducers2.default.dispatch({ type: "REGISTER", username: res.body.username });
+	        _reactRouter.hashHistory.push('/');
 	      }
 	    });
 	  },
